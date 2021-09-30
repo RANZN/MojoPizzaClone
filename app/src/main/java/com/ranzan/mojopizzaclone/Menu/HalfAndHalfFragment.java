@@ -17,13 +17,15 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.ranzan.mojopizzaclone.Adapter.All_Model;
 import com.ranzan.mojopizzaclone.Adapter.MenuAdapter;
+import com.ranzan.mojopizzaclone.Helper.PreferenceHelper;
 import com.ranzan.mojopizzaclone.R;
 import com.ranzan.mojopizzaclone.communication.CommunicationListener;
+import com.ranzan.mojopizzaclone.communication.ItemClickListener;
 
 import java.util.ArrayList;
 
 
-public class HalfAndHalfFragment extends Fragment {
+public class HalfAndHalfFragment extends Fragment implements ItemClickListener {
     private ImageView btnBack;
     private ImageView TvFavorite;
     private TextView mTvPredict;
@@ -136,7 +138,7 @@ public class HalfAndHalfFragment extends Fragment {
     }
 
     private void setRecyclerviewAdapter() {
-        MenuAdapter menuAdapter = new MenuAdapter(all_modelsList);
+        MenuAdapter menuAdapter = new MenuAdapter(all_modelsList,this);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setAdapter(menuAdapter);
@@ -152,5 +154,15 @@ public class HalfAndHalfFragment extends Fragment {
         all_modelsList.add(new All_Model("Half & Half Pizzas", "Veg - Non-Veg Half Half", "Cant't make up your mind? No worries get 2 different haves in one big 10-inch pizza", "The fight ends today! Get your own half now. pick a half each of any 2  & make 1 big 10 inch pizza ", R.drawable.half_5, "$390"));
         all_modelsList.add(new All_Model("Half & Half Pizzas", "Veg - Non-Veg Half Half", "Cant't make up your mind? No worries get 2 different haves in one big 10-inch pizza", "The fight ends today! Get your own half now. pick a half each of any 2  & make 1 big 10 inch pizza ", R.drawable.half_6, "$400"));
         all_modelsList.add(new All_Model("Half & Half Pizzas", "Veg - Non-Veg Half Half", "Cant't make up your mind? No worries get 2 different haves in one big 10-inch pizza", "The fight ends today! Get your own half now. pick a half each of any 2  & make 1 big 10 inch pizza ", R.drawable.half_7, "$540"));
+    }
+
+    @Override
+    public void onItemClick(int position, All_Model all_model) {
+        PreferenceHelper.writeIntToPreference(getContext(), "ImagePoster",all_model.getPosterImage());
+        PreferenceHelper.writeStringToPreference(getContext(),"ItemName",all_model.getNameOfItem());
+        PreferenceHelper.writeStringToPreference(getContext(),"ItemDetail",all_model.getDetailOfItem_1());
+        PreferenceHelper.writeStringToPreference(getContext(),"Prize",all_model.getPrize());
+        PreferenceHelper.writeStringToPreference(getContext(),"ItemDetail_1",all_model.getDetailOfItem());
+        listener.launchDetailItemFragment();
     }
 }

@@ -9,6 +9,7 @@ import androidx.fragment.app.FragmentTransaction;
 import com.ranzan.mojopizzaclone.Menu.All_in_oneFragment;
 import com.ranzan.mojopizzaclone.Menu.Big10Fragment;
 import com.ranzan.mojopizzaclone.Menu.DessertsAndDrinksFragment;
+import com.ranzan.mojopizzaclone.Menu.Detil_ItemFragment;
 import com.ranzan.mojopizzaclone.Menu.GarlicBreadsFragment;
 import com.ranzan.mojopizzaclone.Menu.HalfAndHalfFragment;
 import com.ranzan.mojopizzaclone.Menu.PartyComboFragment;
@@ -67,6 +68,13 @@ private FragmentManager fragmentManager;
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         StatersFragment starters = new StatersFragment();
         fragmentTransaction.replace(R.id.contaner,starters ,"Starters").addToBackStack("").commit();
+    }
+
+    @Override
+    public void launchDetailItemFragment() {
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        Detil_ItemFragment detail  = new Detil_ItemFragment();
+        fragmentTransaction.add(R.id.contaner,detail,"Detail").addToBackStack("").commit();
     }
 
 }

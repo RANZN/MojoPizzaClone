@@ -18,13 +18,15 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.ranzan.mojopizzaclone.Adapter.All_Model;
 import com.ranzan.mojopizzaclone.Adapter.MenuAdapter;
+import com.ranzan.mojopizzaclone.Helper.PreferenceHelper;
 import com.ranzan.mojopizzaclone.R;
 import com.ranzan.mojopizzaclone.communication.CommunicationListener;
+import com.ranzan.mojopizzaclone.communication.ItemClickListener;
 
 import java.util.ArrayList;
 
 
-public class All_in_oneFragment extends Fragment {
+public class All_in_oneFragment extends Fragment implements ItemClickListener {
     private ImageView btnBack;
     private ImageView TvFavorite;
     private TextView mTvPredict;
@@ -136,7 +138,7 @@ public class All_in_oneFragment extends Fragment {
 
 
     private void setRecyclerviewAdapter() {
-        MenuAdapter menuAdapter = new MenuAdapter(all_modelsList);
+        MenuAdapter menuAdapter = new MenuAdapter(all_modelsList,this);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setAdapter(menuAdapter);
@@ -183,5 +185,16 @@ public class All_in_oneFragment extends Fragment {
         mTvDesserts = view.findViewById(R.id.Desserts);
         recyclerView = view.findViewById(R.id.all_menu_recyclerView);
         searchView=view.findViewById(R.id.searchBar);
+    }
+
+    @Override
+    public void onItemClick(int position, All_Model all_model) {
+        PreferenceHelper.writeIntToPreference(getContext(), "ImagePoster",all_model.getPosterImage());
+        PreferenceHelper.writeStringToPreference(getContext(),"ItemName",all_model.getNameOfItem());
+        PreferenceHelper.writeStringToPreference(getContext(),"ItemDetail",all_model.getDetailOfItem_1());
+        PreferenceHelper.writeStringToPreference(getContext(),"ItemDetail_1",all_model.getDetailOfItem());
+        PreferenceHelper.writeStringToPreference(getContext(),"Prize",all_model.getPrize());
+
+        listener.launchDetailItemFragment();
     }
 }
