@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Fragments.Home_Fragment">
+
+    <EditText
+        android:id="@+id/search1"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/shape1"
+        android:padding="3dp" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/search1">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+<!--                        <com.denzcoskun.imageslider.ImageSlider-->
+<!--                            android:id="@+id/image_slider"-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="200dp"-->
+<!--                            app:iss_auto_cycle="true"-->
+<!--                            app:iss_period="1000"-->
+<!--                            app:iss_delay="0"-->
+
+
+<!--                            android:layout_margin="10sp" />-->
+
+            <HorizontalScrollView
+                android:id="@+id/scroll1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/image_slider"
+
+                >
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="300dp"
+                        android:layout_height="200dp"
+                        android:layout_below="@+id/scroll1"
+                        android:layout_margin="5dp"
+                        android:background="@drawable/shape2"
+                        android:padding="2dp"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/a" />
+
+                    <ImageView
+                        android:layout_width="300dp"
+                        android:layout_height="200dp"
+                        android:layout_below="@+id/scroll1"
+                        android:layout_margin="5dp"
+                        android:background="@drawable/shape2"
+                        android:padding="2dp"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/b" />
+
+                    <ImageView
+                        android:layout_width="300dp"
+                        android:layout_height="200dp"
+                        android:layout_below="@+id/scroll1"
+                        android:layout_margin="5dp"
+                        android:background="@drawable/shape2"
+                        android:padding="2dp"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/c" />
+                </LinearLayout>
+            </HorizontalScrollView>
+
+            <TextView
+                android:id="@+id/tvCategory"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/scroll1"
+                android:text="Category"
+
+                />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tvCategory"
+                android:text="Hello World!">
+
+            </androidx.recyclerview.widget.RecyclerView>
+
+        </RelativeLayout>
+    </ScrollView>
+
+</RelativeLayout>

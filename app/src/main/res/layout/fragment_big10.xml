@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    tools:context=".Menu.All_in_oneFragment">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/back"
+        android:background="@drawable/back"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="10dp"
+        android:id="@+id/btnback"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="15dp"
+        android:layout_toRightOf="@+id/btnback"
+        android:text="Menu"
+        android:textSize="18dp"
+        android:textStyle="bold"/>
+
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/btnback"
+        android:src="@drawable/favorite"
+        android:layout_marginStart="250dp"
+        android:layout_marginTop="15dp"
+        android:id="@+id/btnfavorite"/>
+
+    <HorizontalScrollView
+        android:id="@+id/Scroll"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:id="@+id/allmenueLinearLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="55dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/predict"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Predict &amp; Win | $100 credit back"
+                android:textAllCaps="false"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/HalfAndHalf"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:text="Half &amp; Half Pizza"
+                android:textAllCaps="false"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/partycombo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:text="Party Combo[save Extra $125]"
+                android:textAllCaps="false"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/Big_10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:text="Big 10' Pizzas"
+                android:textAllCaps="false"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/Starters"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:text="Starters"
+                android:textAllCaps="false"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/GarlicBread"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:text="Garlics Breads"
+                android:textAllCaps="false"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/Desserts"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:text="Desserts &amp; Drinks"
+                android:textAllCaps="false"
+                android:textColor="@color/black" />
+
+        </LinearLayout>
+
+    </HorizontalScrollView>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/Scroll"
+        android:layout_marginTop="15dp"
+        android:id="@+id/Big_10_recyclerView"/>
+
+
+</RelativeLayout>
+
