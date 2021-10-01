@@ -1,5 +1,6 @@
 package com.ranzan.mojopizzaclone.Menu;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,13 +8,20 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.ranzan.mojopizzaclone.Adapter.All_Model;
+import com.ranzan.mojopizzaclone.CartAdapter.CartModel;
+import com.ranzan.mojopizzaclone.Fragments.CartFragment;
 import com.ranzan.mojopizzaclone.Helper.PreferenceHelper;
+import com.ranzan.mojopizzaclone.MainActivity;
 import com.ranzan.mojopizzaclone.R;
+
+import java.util.ArrayList;
 
 
 public class Detil_ItemFragment extends Fragment {
@@ -23,6 +31,10 @@ public class Detil_ItemFragment extends Fragment {
     private TextView mTv_Show_Prize;
     private Button mBtnAddToCart;
     private TextView mBtnMoreInfo;
+    private String CartName;
+    private String CartPrize;
+    private int CartImage;
+    private int Total;
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -44,6 +56,19 @@ public class Detil_ItemFragment extends Fragment {
 //                startActivity(intent);
 //            }
 //        });
+        mBtnAddToCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String Name =mTv_Show_Name.getText().toString();
+                String Prize = mTv_Show_Prize.getText().toString();
+//                int Image = mTv_Show_Image_Poster.;
+                Bundle bundle = new Bundle();
+                bundle.putString("Itemname" ,Name );
+                bundle.putString("ItePrize" ,Prize );
+                Toast.makeText(getContext(), "Added to Cart", Toast.LENGTH_SHORT).show();
+            }
+        });
+
 
 
     }

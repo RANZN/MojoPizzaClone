@@ -6,6 +6,7 @@ import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 
+import com.ranzan.mojopizzaclone.Fragments.CartFragment;
 import com.ranzan.mojopizzaclone.Menu.All_in_oneFragment;
 
 public class DataActivity extends AppCompatActivity{
@@ -22,6 +23,13 @@ public class DataActivity extends AppCompatActivity{
         fragment.setArguments(bundle);
         fragmentManager=getSupportFragmentManager();
         fragmentManager.beginTransaction().add(R.id.contaner,fragment, String.valueOf(bundle)).commit();
+    }
+
+    @Override
+    public void launchCartItemFragment() {
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        CartFragment cartFragment = new CartFragment();
+        fragmentTransaction.add(R.id.contaner,cartFragment,"Cart").addToBackStack("").commit();
     }
 
 }
