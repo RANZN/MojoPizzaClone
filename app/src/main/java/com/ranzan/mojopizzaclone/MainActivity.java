@@ -1,13 +1,11 @@
 package com.ranzan.mojopizzaclone;
 
 import android.os.Bundle;
-import android.view.MenuItem;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.RecyclerView;
 
+import com.etebarian.meowbottomnavigation.MeowBottomNavigation;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.ranzan.mojopizzaclone.Fragments.AccountFragment;
 import com.ranzan.mojopizzaclone.Fragments.CartFragment;
@@ -17,40 +15,51 @@ import com.ranzan.mojopizzaclone.Fragments.Home_Fragment;
 
 public class MainActivity extends AppCompatActivity {
 
-    private BottomNavigationView bnv;
-    private RecyclerView recyclerView;
+    private MeowBottomNavigation bottomNavigation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        bnv = findViewById(R.id.bottom_navigation);
-        getSupportFragmentManager().beginTransaction().replace(R.id.frame, new Home_Fragment()).commit();
-        bnv.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+        bottomNavigation=findViewById(R.id.bottom_navigation);
+
+        bottomNavigation.add(new MeowBottomNavigation.Model(1,R.drawable.home));
+        bottomNavigation.add(new MeowBottomNavigation.Model(2,R.drawable.group));
+        bottomNavigation.add(new MeowBottomNavigation.Model(3,R.drawable.cart));
+        bottomNavigation.add(new MeowBottomNavigation.Model(4,R.drawable.offer));
+        bottomNavigation.add(new MeowBottomNavigation.Model(5,R.drawable.account));
+
+        bottomNavigation.setOnShowListener(new MeowBottomNavigation.ShowListener() {
             @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                Fragment fragment = null;
-                switch (item.getItemId()) {
-                    case R.id.home:
+            public void onShowItem(MeowBottomNavigation.Model item) {
+                Fragment fragment=null;
+                switch (item.getId()) {
+                    case 1:
                         fragment = new Home_Fragment();
                         break;
-                    case R.id.cart:
+                    case 2:
                         fragment = new CartFragment();
                         break;
-                    case R.id.search:
+                    case 3:
                         fragment = new ClubFragment();
                         break;
-                    case R.id.message:
+                    case 4:
                         fragment = new FreeFragment();
                         break;
-                    case R.id.profile:
+                    case 5:
                         fragment = new AccountFragment();
                         break;
                 }
-                getSupportFragmentManager().beginTransaction().replace(R.id.frame, fragment).commit();
-                return true;
+                getSupportFragmentManager().beginTransaction().replace(R.id.frame_main, fragment).commit();
             }
         });
+        bottomNavigation.show(2,true);
 
+        bottomNavigation.setOnClickMenuListener(new MeowBottomNavigation.ClickListener() {
+            @Override
+            public void onClickItem(MeowBottomNavigation.Model item) {
+
+            }
+        });
     }
 }
