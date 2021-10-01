@@ -38,7 +38,7 @@ public class All_in_oneFragment extends Fragment implements ItemClickListener {
     private SearchView searchView;
     private ArrayList<All_Model> all_modelsList = new ArrayList<>();
 
-
+private static int scrollNum = 0;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -53,7 +53,35 @@ public class All_in_oneFragment extends Fragment implements ItemClickListener {
         buildRecyclerViewData();
         setRecyclerviewAdapter();
         scrollTo();
+        autoScrollTo();
     }
+
+    private void autoScrollTo() {
+        Bundle bundle = getArguments();
+        if (bundle != null) {
+            scrollNum = bundle.getInt("pos");
+        }
+        switch (scrollNum) {
+            case 1:
+                recyclerView.scrollToPosition(8);
+                break;
+            case 2:
+                recyclerView.scrollToPosition(15);
+                break;
+            case 3:
+                recyclerView.scrollToPosition(22);
+                break;
+            case 4:
+                recyclerView.scrollToPosition(29);
+                break;
+            case 5:
+                recyclerView.scrollToPosition(35);
+                break;
+            default:
+                recyclerView.scrollToPosition(0);
+        }
+    }
+
 
     private void scrollTo() {
         mTvHalfAndHalf.setOnClickListener(new View.OnClickListener() {

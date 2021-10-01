@@ -1,5 +1,5 @@
 package com.ranzan.mojopizzaclone.communication;
 
 public interface OnClickListener {
-    void onClick();
+    void onClickRecyclerView(int pos);
 }
