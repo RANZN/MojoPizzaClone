@@ -48,5 +48,6 @@ dependencies {
 
     implementation 'com.tbuonomo:morph-bottom-navigation:1.0.1'
 
+    implementation 'com.airbnb.android:lottie:3.2.0'
 
 }
