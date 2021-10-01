@@ -1,6 +1,5 @@
 package com.ranzan.mojopizzaclone.Menu;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,7 +18,6 @@ import com.ranzan.mojopizzaclone.Adapter.All_Model;
 import com.ranzan.mojopizzaclone.Adapter.MenuAdapter;
 import com.ranzan.mojopizzaclone.Helper.PreferenceHelper;
 import com.ranzan.mojopizzaclone.R;
-import com.ranzan.mojopizzaclone.communication.CommunicationListener;
 import com.ranzan.mojopizzaclone.communication.ItemClickListener;
 
 import java.util.ArrayList;
@@ -37,15 +35,9 @@ public class All_in_oneFragment extends Fragment implements ItemClickListener {
     private TextView mTvDesserts;
 
     private RecyclerView recyclerView;
-    private CommunicationListener listener;
     private SearchView searchView;
     private ArrayList<All_Model> all_modelsList = new ArrayList<>();
 
-    @Override
-    public void onAttach(@NonNull Context context) {
-        super.onAttach(context);
-        listener = (CommunicationListener) context;
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -60,7 +52,6 @@ public class All_in_oneFragment extends Fragment implements ItemClickListener {
         initViews(view);
         buildRecyclerViewData();
         setRecyclerviewAdapter();
-        recyclerView.scrollToPosition(10);
         scrollTo();
     }
 
@@ -68,44 +59,44 @@ public class All_in_oneFragment extends Fragment implements ItemClickListener {
         mTvHalfAndHalf.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                recyclerView.scrollToPosition(4);
+                recyclerView.smoothScrollToPosition(0);
             }
         });
         mTvPartyCombo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                recyclerView.scrollToPosition(8);
+                recyclerView.smoothScrollToPosition(8);
             }
         });
         mTvBig_10.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                recyclerView.scrollToPosition(12);
+                recyclerView.smoothScrollToPosition(15);
             }
         });
         mTvStarters.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                recyclerView.scrollToPosition(16);
+                recyclerView.smoothScrollToPosition(22);
             }
         });
         mTvGarlicBread.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                recyclerView.scrollToPosition(20);
+                recyclerView.smoothScrollToPosition(29);
             }
         });
         mTvDesserts.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                recyclerView.scrollToPosition(24);
+                recyclerView.smoothScrollToPosition(35);
             }
         });
     }
 
 
     private void setRecyclerviewAdapter() {
-        MenuAdapter menuAdapter = new MenuAdapter(all_modelsList,this);
+        MenuAdapter menuAdapter = new MenuAdapter(all_modelsList, this);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setAdapter(menuAdapter);
@@ -113,30 +104,64 @@ public class All_in_oneFragment extends Fragment implements ItemClickListener {
 
     private void buildRecyclerViewData() {
         all_modelsList = new ArrayList<>();
-        all_modelsList.add(new All_Model("Half & Half Pizzas","Veg - Non-Veg Half Half","Cant't make up your mind? No worries get 2 different haves in one big 10-inch pizza","The fight ends today! Get your own half now. pick a half each of any 2  & make 1 big 10 inch pizza ", R.drawable.half_1,"$410"));
-        all_modelsList.add(new All_Model("Half & Half Pizzas","Veg - Non-Veg Half Half","Cant't make up your mind? No worries get 2 different haves in one big 10-inch pizza","The fight ends today! Get your own half now. pick a half each of any 2  & make 1 big 10 inch pizza ", R.drawable.half_2,"$300"));
-        all_modelsList.add(new All_Model("Half & Half Pizzas","Veg - Non-Veg Half Half","Cant't make up your mind? No worries get 2 different haves in one big 10-inch pizza","The fight ends today! Get your own half now. pick a half each of any 2  & make 1 big 10 inch pizza ", R.drawable.half_3,"$200"));
-        all_modelsList.add(new All_Model("Half & Half Pizzas","Veg - Non-Veg Half Half","Cant't make up your mind? No worries get 2 different haves in one big 10-inch pizza","The fight ends today! Get your own half now. pick a half each of any 2  & make 1 big 10 inch pizza ", R.drawable.half_4,"$200"));
-        all_modelsList.add(new All_Model("Half & Half Pizzas","Veg - Non-Veg Half Half","Cant't make up your mind? No worries get 2 different haves in one big 10-inch pizza","The fight ends today! Get your own half now. pick a half each of any 2  & make 1 big 10 inch pizza ", R.drawable.big_1,"$260"));
-        all_modelsList.add(new All_Model("Half & Half Pizzas","Veg - Non-Veg Half Half","Cant't make up your mind? No worries get 2 different haves in one big 10-inch pizza","The fight ends today! Get your own half now. pick a half each of any 2  & make 1 big 10 inch pizza ", R.drawable.big_2,"$390"));
-        all_modelsList.add(new All_Model("Half & Half Pizzas","Veg - Non-Veg Half Half","Cant't make up your mind? No worries get 2 different haves in one big 10-inch pizza","The fight ends today! Get your own half now. pick a half each of any 2  & make 1 big 10 inch pizza ", R.drawable.big_3,"$400"));
-        all_modelsList.add(new All_Model("Half & Half Pizzas","Veg - Non-Veg Half Half","Cant't make up your mind? No worries get 2 different haves in one big 10-inch pizza","The fight ends today! Get your own half now. pick a half each of any 2  & make 1 big 10 inch pizza ", R.drawable.big_4,"$400"));
-        all_modelsList.add(new All_Model("Half & Half Pizzas","Veg - Non-Veg Half Half","Cant't make up your mind? No worries get 2 different haves in one big 10-inch pizza","The fight ends today! Get your own half now. pick a half each of any 2  & make 1 big 10 inch pizza ", R.drawable.combo_1,"$540"));
-        all_modelsList.add(new All_Model("Half & Half Pizzas","Veg - Non-Veg Half Half","Cant't make up your mind? No worries get 2 different haves in one big 10-inch pizza","The fight ends today! Get your own half now. pick a half each of any 2  & make 1 big 10 inch pizza ", R.drawable.combo_2,"$100"));
-        all_modelsList.add(new All_Model("Half & Half Pizzas","Veg - Non-Veg Half Half","Cant't make up your mind? No worries get 2 different haves in one big 10-inch pizza","The fight ends today! Get your own half now. pick a half each of any 2  & make 1 big 10 inch pizza ", R.drawable.combo_3,"$180"));
-        all_modelsList.add(new All_Model("Half & Half Pizzas","Veg - Non-Veg Half Half","Cant't make up your mind? No worries get 2 different haves in one big 10-inch pizza","The fight ends today! Get your own half now. pick a half each of any 2  & make 1 big 10 inch pizza ", R.drawable.combo_4,"$180"));
-        all_modelsList.add(new All_Model("Half & Half Pizzas","Veg - Non-Veg Half Half","Cant't make up your mind? No worries get 2 different haves in one big 10-inch pizza","The fight ends today! Get your own half now. pick a half each of any 2  & make 1 big 10 inch pizza ", R.drawable.starters_1,"$250"));
-        all_modelsList.add(new All_Model("Half & Half Pizzas","Veg - Non-Veg Half Half","Cant't make up your mind? No worries get 2 different haves in one big 10-inch pizza","The fight ends today! Get your own half now. pick a half each of any 2  & make 1 big 10 inch pizza ", R.drawable.starters_2,"$430"));
-        all_modelsList.add(new All_Model("Half & Half Pizzas","Veg - Non-Veg Half Half","Cant't make up your mind? No worries get 2 different haves in one big 10-inch pizza","The fight ends today! Get your own half now. pick a half each of any 2  & make 1 big 10 inch pizza ", R.drawable.starters_3,"$220"));
-        all_modelsList.add(new All_Model("Half & Half Pizzas","Veg - Non-Veg Half Half","Cant't make up your mind? No worries get 2 different haves in one big 10-inch pizza","The fight ends today! Get your own half now. pick a half each of any 2  & make 1 big 10 inch pizza ", R.drawable.starters_4,"$220"));
-        all_modelsList.add(new All_Model("Half & Half Pizzas","Veg - Non-Veg Half Half","Cant't make up your mind? No worries get 2 different haves in one big 10-inch pizza","The fight ends today! Get your own half now. pick a half each of any 2  & make 1 big 10 inch pizza ", R.drawable.garlic_1,"$450"));
-        all_modelsList.add(new All_Model("Half & Half Pizzas","Veg - Non-Veg Half Half","Cant't make up your mind? No worries get 2 different haves in one big 10-inch pizza","The fight ends today! Get your own half now. pick a half each of any 2  & make 1 big 10 inch pizza ", R.drawable.garlic_2,"$290"));
-        all_modelsList.add(new All_Model("Half & Half Pizzas","Veg - Non-Veg Half Half","Cant't make up your mind? No worries get 2 different haves in one big 10-inch pizza","The fight ends today! Get your own half now. pick a half each of any 2  & make 1 big 10 inch pizza ", R.drawable.garlic_3,"$290"));
-        all_modelsList.add(new All_Model("Half & Half Pizzas","Veg - Non-Veg Half Half","Cant't make up your mind? No worries get 2 different haves in one big 10-inch pizza","The fight ends today! Get your own half now. pick a half each of any 2  & make 1 big 10 inch pizza ", R.drawable.garlic_4,"$290"));
-        all_modelsList.add(new All_Model("Half & Half Pizzas","Veg - Non-Veg Half Half","Cant't make up your mind? No worries get 2 different haves in one big 10-inch pizza","The fight ends today! Get your own half now. pick a half each of any 2  & make 1 big 10 inch pizza ", R.drawable.desserts_1,"$310"));
-        all_modelsList.add(new All_Model("Half & Half Pizzas","Veg - Non-Veg Half Half","Cant't make up your mind? No worries get 2 different haves in one big 10-inch pizza","The fight ends today! Get your own half now. pick a half each of any 2  & make 1 big 10 inch pizza ", R.drawable.desserts_2,"$450"));
-        all_modelsList.add(new All_Model("Half & Half Pizzas","Veg - Non-Veg Half Half","Cant't make up your mind? No worries get 2 different haves in one big 10-inch pizza","The fight ends today! Get your own half now. pick a half each of any 2  & make 1 big 10 inch pizza ", R.drawable.desserts_3,"$450"));
-        all_modelsList.add(new All_Model("Half & Half Pizzas","Veg - Non-Veg Half Half","Cant't make up your mind? No worries get 2 different haves in one big 10-inch pizza","The fight ends today! Get your own half now. pick a half each of any 2  & make 1 big 10 inch pizza ", R.drawable.desserts_4,"$450"));
+
+        all_modelsList.add(new All_Model("Half & Half Pizzas", "Veg - Non-Veg Half Half", "Cant't make up your mind? No worries get 2 different haves in one big 10-inch pizza", "The fight ends today! Get your own half now. pick a half each of any 2  & make 1 big 10 inch pizza ", R.drawable.half_1, "$410"));
+        all_modelsList.add(new All_Model("Half & Half Pizzas", "Veg - Non-Veg Half Half", "Cant't make up your mind? No worries get 2 different haves in one big 10-inch pizza", "The fight ends today! Get your own half now. pick a half each of any 2  & make 1 big 10 inch pizza ", R.drawable.half_2, "$300"));
+        all_modelsList.add(new All_Model("Half & Half Pizzas", "Veg - Non-Veg Half Half", "Cant't make up your mind? No worries get 2 different haves in one big 10-inch pizza", "The fight ends today! Get your own half now. pick a half each of any 2  & make 1 big 10 inch pizza ", R.drawable.half_3, "$200"));
+        all_modelsList.add(new All_Model("Half & Half Pizzas", "Veg - Non-Veg Half Half", "Cant't make up your mind? No worries get 2 different haves in one big 10-inch pizza", "The fight ends today! Get your own half now. pick a half each of any 2  & make 1 big 10 inch pizza ", R.drawable.half_4, "$260"));
+        all_modelsList.add(new All_Model("Half & Half Pizzas", "Veg - Non-Veg Half Half", "Cant't make up your mind? No worries get 2 different haves in one big 10-inch pizza", "The fight ends today! Get your own half now. pick a half each of any 2  & make 1 big 10 inch pizza ", R.drawable.half_5, "$390"));
+        all_modelsList.add(new All_Model("Half & Half Pizzas", "Veg - Non-Veg Half Half", "Cant't make up your mind? No worries get 2 different haves in one big 10-inch pizza", "The fight ends today! Get your own half now. pick a half each of any 2  & make 1 big 10 inch pizza ", R.drawable.half_6, "$400"));
+        all_modelsList.add(new All_Model("Half & Half Pizzas", "Veg - Non-Veg Half Half", "Cant't make up your mind? No worries get 2 different haves in one big 10-inch pizza", "The fight ends today! Get your own half now. pick a half each of any 2  & make 1 big 10 inch pizza ", R.drawable.half_7, "$540"));
+
+        all_modelsList.add(new All_Model("Half & Half Pizzas","Veg - Non-Veg Half Half","Cant't make up your mind? No worries get 2 different haves in one big 10-inch pizza","The fight ends today! Get your own half now. pick a half each of any 2  & make 1 big 10 inch pizza ", R.drawable.combo_1,"$410"));
+        all_modelsList.add(new All_Model("Half & Half Pizzas","Veg - Non-Veg Half Half","Cant't make up your mind? No worries get 2 different haves in one big 10-inch pizza","The fight ends today! Get your own half now. pick a half each of any 2  & make 1 big 10 inch pizza ", R.drawable.combo_2,"$300"));
+        all_modelsList.add(new All_Model("Half & Half Pizzas","Veg - Non-Veg Half Half","Cant't make up your mind? No worries get 2 different haves in one big 10-inch pizza","The fight ends today! Get your own half now. pick a half each of any 2  & make 1 big 10 inch pizza ", R.drawable.combo_3,"$200"));
+        all_modelsList.add(new All_Model("Half & Half Pizzas","Veg - Non-Veg Half Half","Cant't make up your mind? No worries get 2 different haves in one big 10-inch pizza","The fight ends today! Get your own half now. pick a half each of any 2  & make 1 big 10 inch pizza ", R.drawable.combo_4,"$260"));
+        all_modelsList.add(new All_Model("Half & Half Pizzas","Veg - Non-Veg Half Half","Cant't make up your mind? No worries get 2 different haves in one big 10-inch pizza","The fight ends today! Get your own half now. pick a half each of any 2  & make 1 big 10 inch pizza ", R.drawable.combo_5,"$390"));
+        all_modelsList.add(new All_Model("Half & Half Pizzas","Veg - Non-Veg Half Half","Cant't make up your mind? No worries get 2 different haves in one big 10-inch pizza","The fight ends today! Get your own half now. pick a half each of any 2  & make 1 big 10 inch pizza ", R.drawable.combo_6,"$400"));
+        all_modelsList.add(new All_Model("Half & Half Pizzas","Veg - Non-Veg Half Half","Cant't make up your mind? No worries get 2 different haves in one big 10-inch pizza","The fight ends today! Get your own half now. pick a half each of any 2  & make 1 big 10 inch pizza ", R.drawable.combo_7,"$540"));
+
+        all_modelsList.add(new All_Model("Half & Half Pizzas","Veg - Non-Veg Half Half","Cant't make up your mind? No worries get 2 different haves in one big 10-inch pizza","The fight ends today! Get your own half now. pick a half each of any 2  & make 1 big 10 inch pizza ", R.drawable.big_1,"$410"));
+        all_modelsList.add(new All_Model("Half & Half Pizzas","Veg - Non-Veg Half Half","Cant't make up your mind? No worries get 2 different haves in one big 10-inch pizza","The fight ends today! Get your own half now. pick a half each of any 2  & make 1 big 10 inch pizza ", R.drawable.big_2,"$300"));
+        all_modelsList.add(new All_Model("Half & Half Pizzas","Veg - Non-Veg Half Half","Cant't make up your mind? No worries get 2 different haves in one big 10-inch pizza","The fight ends today! Get your own half now. pick a half each of any 2  & make 1 big 10 inch pizza ", R.drawable.big_3,"$200"));
+        all_modelsList.add(new All_Model("Half & Half Pizzas","Veg - Non-Veg Half Half","Cant't make up your mind? No worries get 2 different haves in one big 10-inch pizza","The fight ends today! Get your own half now. pick a half each of any 2  & make 1 big 10 inch pizza ", R.drawable.big_4,"$260"));
+        all_modelsList.add(new All_Model("Half & Half Pizzas","Veg - Non-Veg Half Half","Cant't make up your mind? No worries get 2 different haves in one big 10-inch pizza","The fight ends today! Get your own half now. pick a half each of any 2  & make 1 big 10 inch pizza ", R.drawable.big_5,"$390"));
+        all_modelsList.add(new All_Model("Half & Half Pizzas","Veg - Non-Veg Half Half","Cant't make up your mind? No worries get 2 different haves in one big 10-inch pizza","The fight ends today! Get your own half now. pick a half each of any 2  & make 1 big 10 inch pizza ", R.drawable.big_6,"$400"));
+        all_modelsList.add(new All_Model("Half & Half Pizzas","Veg - Non-Veg Half Half","Cant't make up your mind? No worries get 2 different haves in one big 10-inch pizza","The fight ends today! Get your own half now. pick a half each of any 2  & make 1 big 10 inch pizza ", R.drawable.big_7,"$540"));
+
+
+
+        all_modelsList.add(new All_Model("Half & Half Pizzas", "Veg - Non-Veg Half Half", "Cant't make up your mind? No worries get 2 different haves in one big 10-inch pizza", "The fight ends today! Get your own half now. pick a half each of any 2  & make 1 big 10 inch pizza ", R.drawable.starters_1, "$410"));
+        all_modelsList.add(new All_Model("Half & Half Pizzas", "Veg - Non-Veg Half Half", "Cant't make up your mind? No worries get 2 different haves in one big 10-inch pizza", "The fight ends today! Get your own half now. pick a half each of any 2  & make 1 big 10 inch pizza ", R.drawable.starters_2, "$300"));
+        all_modelsList.add(new All_Model("Half & Half Pizzas", "Veg - Non-Veg Half Half", "Cant't make up your mind? No worries get 2 different haves in one big 10-inch pizza", "The fight ends today! Get your own half now. pick a half each of any 2  & make 1 big 10 inch pizza ", R.drawable.starters_3, "$200"));
+        all_modelsList.add(new All_Model("Half & Half Pizzas", "Veg - Non-Veg Half Half", "Cant't make up your mind? No worries get 2 different haves in one big 10-inch pizza", "The fight ends today! Get your own half now. pick a half each of any 2  & make 1 big 10 inch pizza ", R.drawable.starters_4, "$260"));
+        all_modelsList.add(new All_Model("Half & Half Pizzas", "Veg - Non-Veg Half Half", "Cant't make up your mind? No worries get 2 different haves in one big 10-inch pizza", "The fight ends today! Get your own half now. pick a half each of any 2  & make 1 big 10 inch pizza ", R.drawable.starters_5, "$390"));
+        all_modelsList.add(new All_Model("Half & Half Pizzas", "Veg - Non-Veg Half Half", "Cant't make up your mind? No worries get 2 different haves in one big 10-inch pizza", "The fight ends today! Get your own half now. pick a half each of any 2  & make 1 big 10 inch pizza ", R.drawable.starters_6, "$400"));
+        all_modelsList.add(new All_Model("Half & Half Pizzas", "Veg - Non-Veg Half Half", "Cant't make up your mind? No worries get 2 different haves in one big 10-inch pizza", "The fight ends today! Get your own half now. pick a half each of any 2  & make 1 big 10 inch pizza ", R.drawable.starters_7, "$540"));
+
+
+        all_modelsList.add(new All_Model("Half & Half Pizzas","Veg - Non-Veg Half Half","Cant't make up your mind? No worries get 2 different haves in one big 10-inch pizza","The fight ends today! Get your own half now. pick a half each of any 2  & make 1 big 10 inch pizza ", R.drawable.garlic_1,"$410"));
+        all_modelsList.add(new All_Model("Half & Half Pizzas","Veg - Non-Veg Half Half","Cant't make up your mind? No worries get 2 different haves in one big 10-inch pizza","The fight ends today! Get your own half now. pick a half each of any 2  & make 1 big 10 inch pizza ", R.drawable.garlic_2,"$300"));
+        all_modelsList.add(new All_Model("Half & Half Pizzas","Veg - Non-Veg Half Half","Cant't make up your mind? No worries get 2 different haves in one big 10-inch pizza","The fight ends today! Get your own half now. pick a half each of any 2  & make 1 big 10 inch pizza ", R.drawable.garlic_3,"$200"));
+        all_modelsList.add(new All_Model("Half & Half Pizzas","Veg - Non-Veg Half Half","Cant't make up your mind? No worries get 2 different haves in one big 10-inch pizza","The fight ends today! Get your own half now. pick a half each of any 2  & make 1 big 10 inch pizza ", R.drawable.garlic_4,"$260"));
+        all_modelsList.add(new All_Model("Half & Half Pizzas","Veg - Non-Veg Half Half","Cant't make up your mind? No worries get 2 different haves in one big 10-inch pizza","The fight ends today! Get your own half now. pick a half each of any 2  & make 1 big 10 inch pizza ", R.drawable.garlic_5,"$390"));
+        all_modelsList.add(new All_Model("Half & Half Pizzas","Veg - Non-Veg Half Half","Cant't make up your mind? No worries get 2 different haves in one big 10-inch pizza","The fight ends today! Get your own half now. pick a half each of any 2  & make 1 big 10 inch pizza ", R.drawable.garlic_6,"$400"));
+
+
+
+        all_modelsList.add(new All_Model("Half & Half Pizzas","Veg - Non-Veg Half Half","Cant't make up your mind? No worries get 2 different haves in one big 10-inch pizza","The fight ends today! Get your own half now. pick a half each of any 2  & make 1 big 10 inch pizza ", R.drawable.desserts_1,"$410"));
+        all_modelsList.add(new All_Model("Half & Half Pizzas","Veg - Non-Veg Half Half","Cant't make up your mind? No worries get 2 different haves in one big 10-inch pizza","The fight ends today! Get your own half now. pick a half each of any 2  & make 1 big 10 inch pizza ", R.drawable.desserts_2,"$300"));
+        all_modelsList.add(new All_Model("Half & Half Pizzas","Veg - Non-Veg Half Half","Cant't make up your mind? No worries get 2 different haves in one big 10-inch pizza","The fight ends today! Get your own half now. pick a half each of any 2  & make 1 big 10 inch pizza ", R.drawable.desserts_3,"$200"));
+        all_modelsList.add(new All_Model("Half & Half Pizzas","Veg - Non-Veg Half Half","Cant't make up your mind? No worries get 2 different haves in one big 10-inch pizza","The fight ends today! Get your own half now. pick a half each of any 2  & make 1 big 10 inch pizza ", R.drawable.desserts_4,"$260"));
+        all_modelsList.add(new All_Model("Half & Half Pizzas","Veg - Non-Veg Half Half","Cant't make up your mind? No worries get 2 different haves in one big 10-inch pizza","The fight ends today! Get your own half now. pick a half each of any 2  & make 1 big 10 inch pizza ", R.drawable.desserts_5,"$390"));
+        all_modelsList.add(new All_Model("Half & Half Pizzas","Veg - Non-Veg Half Half","Cant't make up your mind? No worries get 2 different haves in one big 10-inch pizza","The fight ends today! Get your own half now. pick a half each of any 2  & make 1 big 10 inch pizza ", R.drawable.desserts_6,"$400"));
+        all_modelsList.add(new All_Model("Half & Half Pizzas","Veg - Non-Veg Half Half","Cant't make up your mind? No worries get 2 different haves in one big 10-inch pizza","The fight ends today! Get your own half now. pick a half each of any 2  & make 1 big 10 inch pizza ", R.drawable.desserts_7,"$540"));
+
+
+
+
+
+
     }
 
 
@@ -148,20 +173,23 @@ public class All_in_oneFragment extends Fragment implements ItemClickListener {
         TvFavorite = view.findViewById(R.id.btnfavorite);
         mTvPredict = view.findViewById(R.id.predict);
         mTvHalfAndHalf = view.findViewById(R.id.HalfAndHalf);
-        mTvPartyCombo =view.findViewById(R.id.partycombo);
+        mTvPartyCombo = view.findViewById(R.id.partycombo);
         mTvBig_10 = view.findViewById(R.id.Big_10);
         mTvStarters = view.findViewById(R.id.Starters);
         mTvGarlicBread = view.findViewById(R.id.GarlicBread);
         mTvDesserts = view.findViewById(R.id.Desserts);
+
     }
 
     @Override
     public void onItemClick(int position, All_Model all_model) {
-        PreferenceHelper.writeIntToPreference(getContext(), "ImagePoster",all_model.getPosterImage());
-        PreferenceHelper.writeStringToPreference(getContext(),"ItemName",all_model.getNameOfItem());
-        PreferenceHelper.writeStringToPreference(getContext(),"ItemDetail",all_model.getDetailOfItem_1());
-        PreferenceHelper.writeStringToPreference(getContext(),"ItemDetail_1",all_model.getDetailOfItem());
-        PreferenceHelper.writeStringToPreference(getContext(),"Prize",all_model.getPrize());
-        listener.launchDetailItemFragment();
+        PreferenceHelper.writeIntToPreference(getContext(), "ImagePoster", all_model.getPosterImage());
+        PreferenceHelper.writeStringToPreference(getContext(), "ItemName", all_model.getNameOfItem());
+        PreferenceHelper.writeStringToPreference(getContext(), "ItemDetail", all_model.getDetailOfItem_1());
+        PreferenceHelper.writeStringToPreference(getContext(), "ItemDetail_1", all_model.getDetailOfItem());
+        PreferenceHelper.writeStringToPreference(getContext(), "Prize", all_model.getPrize());
+        Detil_ItemFragment fragment=new Detil_ItemFragment();
+        getFragmentManager().beginTransaction().add(R.id.contaner,fragment).addToBackStack("").commit();
     }
+
 }

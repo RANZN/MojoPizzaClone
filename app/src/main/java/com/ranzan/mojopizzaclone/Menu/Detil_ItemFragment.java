@@ -64,10 +64,6 @@ public class Detil_ItemFragment extends Fragment {
         });
     }
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
 
 
     @Override

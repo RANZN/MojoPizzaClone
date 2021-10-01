@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/all_in_oneFragment">
+
+    <fragment
+        android:id="@+id/all_in_oneFragment"
+        android:name="com.ranzan.mojopizzaclone.Menu.All_in_oneFragment"
+        android:label="fragment_all_in_one"
+        tools:layout="@layout/fragment_all_in_one" >
+        <action
+            android:id="@+id/action_all_in_oneFragment_to_detil_ItemFragment"
+            app:destination="@id/detil_ItemFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detil_ItemFragment"
+        android:name="com.ranzan.mojopizzaclone.Menu.Detil_ItemFragment"
+        android:label="fragment_detil__item"
+        tools:layout="@layout/fragment_detil__item" />
+</navigation>
