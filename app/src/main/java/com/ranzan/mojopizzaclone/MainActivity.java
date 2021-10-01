@@ -5,8 +5,8 @@ import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
+
 import com.etebarian.meowbottomnavigation.MeowBottomNavigation;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.ranzan.mojopizzaclone.Fragments.AccountFragment;
 import com.ranzan.mojopizzaclone.Fragments.CartFragment;
 import com.ranzan.mojopizzaclone.Fragments.ClubFragment;
@@ -39,10 +39,10 @@ public class MainActivity extends AppCompatActivity {
                         fragment = new Home_Fragment();
                         break;
                     case 2:
-                        fragment = new CartFragment();
+                        fragment = new ClubFragment();
                         break;
                     case 3:
-                        fragment = new ClubFragment();
+                        fragment = new CartFragment();
                         break;
                     case 4:
                         fragment = new FreeFragment();
