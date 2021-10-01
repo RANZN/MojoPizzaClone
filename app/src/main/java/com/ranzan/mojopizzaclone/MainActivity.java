@@ -5,13 +5,14 @@ import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
+
 import com.etebarian.meowbottomnavigation.MeowBottomNavigation;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.ranzan.mojopizzaclone.Fragments.AccountFragment;
 import com.ranzan.mojopizzaclone.Fragments.CartFragment;
 import com.ranzan.mojopizzaclone.Fragments.ClubFragment;
 import com.ranzan.mojopizzaclone.Fragments.FreeFragment;
 import com.ranzan.mojopizzaclone.Fragments.Home_Fragment;
+
 
 public class MainActivity extends AppCompatActivity {
 

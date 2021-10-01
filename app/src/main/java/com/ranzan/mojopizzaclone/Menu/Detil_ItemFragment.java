@@ -1,6 +1,8 @@
 package com.ranzan.mojopizzaclone.Menu;
 
-import android.content.Intent;
+import static android.content.Context.MODE_PRIVATE;
+
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,11 +16,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.ranzan.mojopizzaclone.Adapter.All_Model;
+import com.google.gson.Gson;
 import com.ranzan.mojopizzaclone.CartAdapter.CartModel;
-import com.ranzan.mojopizzaclone.Fragments.CartFragment;
 import com.ranzan.mojopizzaclone.Helper.PreferenceHelper;
-import com.ranzan.mojopizzaclone.MainActivity;
 import com.ranzan.mojopizzaclone.R;
 
 import java.util.ArrayList;
@@ -35,15 +35,20 @@ public class Detil_ItemFragment extends Fragment {
     private String CartPrize;
     private int CartImage;
     private int Total;
+    private static ArrayList<CartModel> cartList = new ArrayList<>();
+
+
+    private int imageId;
+    private String Name, Detail, Prize;
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         initView(view);
-        int imageId = PreferenceHelper.getIntFromPreference(getContext(), "ImagePoster");
-        String Name = PreferenceHelper.getStringFromPreference(getContext(), "ItemName");
-        String Detail = PreferenceHelper.getStringFromPreference(getContext(), "ItemDetail");
-        String Prize = PreferenceHelper.getStringFromPreference(getContext(), "Prize");
+        imageId = PreferenceHelper.getIntFromPreference(getContext(), "ImagePoster");
+        Name = PreferenceHelper.getStringFromPreference(getContext(), "ItemName");
+        Detail = PreferenceHelper.getStringFromPreference(getContext(), "ItemDetail");
+        Prize = PreferenceHelper.getStringFromPreference(getContext(), "Prize");
 
         mTv_Show_Image_Poster.setImageResource(imageId);
         mTv_Show_Name.setText(Name);
@@ -59,18 +64,27 @@ public class Detil_ItemFragment extends Fragment {
         mBtnAddToCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String Name =mTv_Show_Name.getText().toString();
+                String Name = mTv_Show_Name.getText().toString();
                 String Prize = mTv_Show_Prize.getText().toString();
 //                int Image = mTv_Show_Image_Poster.;
                 Bundle bundle = new Bundle();
-                bundle.putString("Itemname" ,Name );
-                bundle.putString("ItePrize" ,Prize );
+                bundle.putString("Itemname", Name);
+                bundle.putString("ItePrize", Prize);
+                cartList.add(new CartModel(Name, imageId, Prize, 0));
+                addDataToPreference();
                 Toast.makeText(getContext(), "Added to Cart", Toast.LENGTH_SHORT).show();
             }
         });
 
+    }
 
-
+    private void addDataToPreference() {
+        SharedPreferences sharedPreferences = getContext().getSharedPreferences("shared preferences", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        Gson gson = new Gson();
+        String json = gson.toJson(cartList);
+        editor.putString("dataList", json);
+        editor.apply();
     }
 
     private void initView(View view) {
