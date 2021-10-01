@@ -23,8 +23,7 @@ import com.ranzan.mojopizzaclone.communication.OnClickListener;
 import java.util.ArrayList;
 
 public class Home_Fragment extends Fragment implements OnClickListener {
-    //    private ImageSlider imageSlider;
-//    private ArrayList<SlideModel> imageList = new ArrayList<>();
+
     private ArrayList<HomeModel> imageButtons = new ArrayList<>();
     private RecyclerView recyclerView;
     private TextView textView;
@@ -39,12 +38,7 @@ public class Home_Fragment extends Fragment implements OnClickListener {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-//        imageList.add(new SlideModel(R.drawable.pizza1, ScaleTypes.FIT));
-//        imageList.add(new SlideModel(R.drawable.pizza1, ScaleTypes.FIT));
-//        imageList.add(new SlideModel(R.drawable.pizza1, ScaleTypes.FIT));
-//        imageList.add(new SlideModel(R.drawable.pizza1, ScaleTypes.FIT));
         initViews(view);
-//        imageSlider.setImageList(imageList);
         buildList();
         setRecyclerView();
     }
@@ -70,7 +64,6 @@ public class Home_Fragment extends Fragment implements OnClickListener {
     }
 
     private void initViews(View view) {
-//        imageSlider = view.findViewById(R.id.image_slider);
         recyclerView = view.findViewById(R.id.recycler1);
         textView = view.findViewById(R.id.tvCategory);
     }
