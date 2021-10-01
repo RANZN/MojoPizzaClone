@@ -64,65 +64,8 @@ public class StatersFragment extends Fragment implements ItemClickListener {
         initView(view);
         buildRecyclerViewData();
         setRecyclerviewAdapter();
-        onClick();
     }
 
-    private void onClick() {
-        btnBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(getContext(), "Under Progress", Toast.LENGTH_SHORT).show();
-            }
-        });
-        mTvDesserts.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                listener.launchDessertAndDrinkFragment();
-            }
-        });
-        TvFavorite.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(getContext(), "Under Progress", Toast.LENGTH_SHORT).show();
-            }
-        });
-        mTvPredict.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-            }
-        });
-        mTvHalfAndHalf.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                listener.launchHalfAndHalfFragment();
-            }
-        });
-        mTvPartyCombo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                listener.launchPartyComboFragment();
-            }
-        });
-        mTvBig_10.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                listener.launchBig10Fragment();
-            }
-        });
-        mTvStarters.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                listener.launchStartersFragment();
-            }
-        });
-        mTvGarlicBread.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                listener.launchGarlicFragment();
-            }
-        });
-    }
 
     private void initView(View view) {
         btnBack = view.findViewById(R.id.btnback);

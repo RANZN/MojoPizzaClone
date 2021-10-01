@@ -17,7 +17,7 @@ import com.ranzan.mojopizzaclone.R;
 
 
 public class Detil_ItemFragment extends Fragment {
-    private ImageView mTv_Show_Image_Poster;
+    private ImageView mTv_Show_Image_Poster,closeBtn;
     private TextView mTv_Show_Name;
     private TextView mTv_Show_Detail;
     private TextView mTv_Show_Prize;
@@ -55,6 +55,13 @@ public class Detil_ItemFragment extends Fragment {
         mTv_Show_Prize= view.findViewById(R.id.Trans_Tv_Show_Prize);
         mBtnAddToCart= view.findViewById(R.id.Trans_Btn_addToCart);
         mBtnMoreInfo= view.findViewById(R.id.Btnmoreinfo);
+        closeBtn=view.findViewById(R.id.closeBtn);
+        closeBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getActivity().getFragmentManager().popBackStack();
+            }
+        });
     }
 
     @Override

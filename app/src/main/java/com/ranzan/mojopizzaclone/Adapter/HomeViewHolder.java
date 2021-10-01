@@ -1,4 +1,4 @@
-package com.ranzan.mojopizzaclone;
+package com.ranzan.mojopizzaclone.Adapter;
 
 import android.view.View;
 import android.widget.ImageView;
@@ -6,11 +6,13 @@ import android.widget.ImageView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class model_holder extends RecyclerView.ViewHolder {
+import com.ranzan.mojopizzaclone.R;
+
+public class HomeViewHolder extends RecyclerView.ViewHolder {
     private ImageView mImgBtn;
     private RecyclerView recyclerView;
 
-    public model_holder(@NonNull View itemView) {
+    public HomeViewHolder(@NonNull View itemView) {
         super(itemView);
         initViews(itemView);
 
@@ -21,7 +23,7 @@ public class model_holder extends RecyclerView.ViewHolder {
         recyclerView=itemView.findViewById(R.id.recycler1);
     }
 
-    public void setData(Image_model model) {
+    public void setData(HomeModel model) {
         mImgBtn.setImageResource(model.getImageId());
     }
 }

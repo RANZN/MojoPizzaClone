@@ -15,16 +15,16 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.ranzan.mojopizzaclone.DataActivity;
-import com.ranzan.mojopizzaclone.Image_model;
+import com.ranzan.mojopizzaclone.Adapter.HomeModel;
 import com.ranzan.mojopizzaclone.R;
-import com.ranzan.mojopizzaclone.model_adapter;
+import com.ranzan.mojopizzaclone.Adapter.HomeAdapter;
 
 import java.util.ArrayList;
 
 public class Home_Fragment extends Fragment {
 //    private ImageSlider imageSlider;
 //    private ArrayList<SlideModel> imageList = new ArrayList<>();
-    private ArrayList<Image_model> imageButtons = new ArrayList<>();
+    private ArrayList<HomeModel> imageButtons = new ArrayList<>();
     private RecyclerView recyclerView;
     private TextView textView;
     @Override
@@ -57,20 +57,20 @@ public class Home_Fragment extends Fragment {
     }
 
     private void buildList() {
-        imageButtons.add(new Image_model(R.drawable.d));
-        imageButtons.add(new Image_model(R.drawable.e));
-        imageButtons.add(new Image_model(R.drawable.f));
-        imageButtons.add(new Image_model(R.drawable.g));
-        imageButtons.add(new Image_model(R.drawable.h));
-        imageButtons.add(new Image_model(R.drawable.i));
-        imageButtons.add(new Image_model(R.drawable.j));
-        imageButtons.add(new Image_model(R.drawable.k));
-        imageButtons.add(new Image_model(R.drawable.l));
-        imageButtons.add(new Image_model(R.drawable.m));
+        imageButtons.add(new HomeModel(R.drawable.d));
+        imageButtons.add(new HomeModel(R.drawable.e));
+        imageButtons.add(new HomeModel(R.drawable.f));
+        imageButtons.add(new HomeModel(R.drawable.g));
+        imageButtons.add(new HomeModel(R.drawable.h));
+        imageButtons.add(new HomeModel(R.drawable.i));
+        imageButtons.add(new HomeModel(R.drawable.j));
+        imageButtons.add(new HomeModel(R.drawable.k));
+        imageButtons.add(new HomeModel(R.drawable.l));
+        imageButtons.add(new HomeModel(R.drawable.m));
     }
 
     private void setRecyclerView() {
-        model_adapter adapter = new model_adapter(imageButtons);
+        HomeAdapter adapter = new HomeAdapter(imageButtons);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(this.getContext(), 2);
         recyclerView.setLayoutManager(gridLayoutManager);
         recyclerView.setAdapter(adapter);

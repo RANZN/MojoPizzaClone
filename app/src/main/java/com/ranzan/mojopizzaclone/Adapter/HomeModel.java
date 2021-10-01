@@ -1,9 +1,9 @@
-package com.ranzan.mojopizzaclone;
+package com.ranzan.mojopizzaclone.Adapter;
 
-public class Image_model {
+public class HomeModel {
     private int imageId;
 
-    public Image_model(int imageId) {
+    public HomeModel(int imageId) {
         this.imageId = imageId;
     }
 

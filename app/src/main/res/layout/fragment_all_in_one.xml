@@ -6,13 +6,13 @@
     android:layout_height="match_parent"
     tools:context=".Menu.All_in_oneFragment">
     <ImageView
+        android:id="@+id/btnback"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/back"
-        android:background="@drawable/back"
         android:layout_marginStart="15dp"
         android:layout_marginTop="10dp"
-        android:id="@+id/btnback"/>
+        android:background="@drawable/back"
+        android:src="@drawable/back" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -25,32 +25,33 @@
         android:textStyle="bold" />
 
     <ImageView
+        android:id="@+id/btnfavorite"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/favorite"
-        android:id="@+id/btnfavorite"
         android:layout_alignParentEnd="true"
         android:layout_marginTop="15dp"
-        android:layout_marginRight="15dp" />
+        android:layout_marginRight="15dp"
+        android:src="@drawable/favorite" />
 
     <androidx.appcompat.widget.SearchView
         android:id="@+id/searchBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginRight="15dp"
-        android:layout_toLeftOf="@id/btnfavorite"
-        />
-<!--    <ImageView-->
-<!--        android:id="@+id/searchBar"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginTop="15dp"-->
-<!--        android:layout_marginRight="15dp"-->
-<!--        android:layout_toLeftOf="@id/btnfavorite"-->
-<!--        android:src="@drawable/ic_search" />-->
+        android:layout_toLeftOf="@id/btnfavorite" />
+    <!--    <ImageView-->
+    <!--        android:id="@+id/searchBar"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_marginTop="15dp"-->
+    <!--        android:layout_marginRight="15dp"-->
+    <!--        android:layout_toLeftOf="@id/btnfavorite"-->
+    <!--        android:src="@drawable/ic_search" />-->
 
     <HorizontalScrollView
         android:id="@+id/Scroll"
+        android:layout_marginTop="2dp"
+        android:layout_below="@id/btnfavorite"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
@@ -58,7 +59,6 @@
             android:id="@+id/allmenueLinearLayout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="55dp"
             android:orientation="horizontal">
 
             <TextView
@@ -128,10 +128,11 @@
     </HorizontalScrollView>
 
     <androidx.recyclerview.widget.RecyclerView
+        android:layout_below="@id/Scroll"
+        android:padding="4dp"
+        android:id="@+id/all_menu_recyclerView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/Scroll"
-        android:layout_marginTop="15dp"
-        android:id="@+id/all_menu_recyclerView"/>
+        />
 </RelativeLayout>
 

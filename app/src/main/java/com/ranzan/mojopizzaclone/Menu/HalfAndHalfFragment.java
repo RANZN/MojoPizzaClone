@@ -26,15 +26,6 @@ import java.util.ArrayList;
 
 
 public class HalfAndHalfFragment extends Fragment implements ItemClickListener {
-    private ImageView btnBack;
-    private ImageView TvFavorite;
-    private TextView mTvPredict;
-    private TextView mTvHalfAndHalf;
-    private TextView mTvPartyCombo;
-    private TextView mTvBig_10;
-    private TextView mTvStarters;
-    private TextView mTvGarlicBread;
-    private TextView mTvDesserts;
     private CommunicationListener listener;
     private ArrayList<All_Model> all_modelsList = new ArrayList<>();
     private RecyclerView recyclerView;
@@ -45,11 +36,6 @@ public class HalfAndHalfFragment extends Fragment implements ItemClickListener {
         listener = (CommunicationListener) context;
     }
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -62,80 +48,12 @@ public class HalfAndHalfFragment extends Fragment implements ItemClickListener {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         recyclerView = view.findViewById(R.id.HalfAndHalf_recyclerView);
-        initView(view);
         buildRecyclerViewData();
         setRecyclerviewAdapter();
-        onclick();
     }
 
-    private void onclick() {
-        btnBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(getContext(), "Under Progress", Toast.LENGTH_SHORT).show();
-            }
-        });
-        mTvDesserts.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                listener.launchDessertAndDrinkFragment();
-            }
-        });
-        TvFavorite.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(getContext(), "Under Progress", Toast.LENGTH_SHORT).show();
-            }
-        });
-        mTvPredict.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
 
-            }
-        });
-        mTvHalfAndHalf.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                listener.launchHalfAndHalfFragment();
-            }
-        });
-        mTvPartyCombo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                listener.launchPartyComboFragment();
-            }
-        });
-        mTvBig_10.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                listener.launchBig10Fragment();
-            }
-        });
-        mTvStarters.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                listener.launchStartersFragment();
-            }
-        });
-        mTvGarlicBread.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                listener.launchGarlicFragment();
-            }
-        });
-    }
 
-    private void initView(View view) {
-        btnBack = view.findViewById(R.id.btnback);
-        TvFavorite = view.findViewById(R.id.btnfavorite);
-        mTvPredict = view.findViewById(R.id.predict);
-        mTvHalfAndHalf = view.findViewById(R.id.HalfAndHalf);
-        mTvPartyCombo = view.findViewById(R.id.partycombo);
-        mTvBig_10 = view.findViewById(R.id.Big_10);
-        mTvStarters = view.findViewById(R.id.Starters);
-        mTvGarlicBread = view.findViewById(R.id.GarlicBread);
-        mTvDesserts = view.findViewById(R.id.Desserts);
-    }
 
     private void setRecyclerviewAdapter() {
         MenuAdapter menuAdapter = new MenuAdapter(all_modelsList,this);

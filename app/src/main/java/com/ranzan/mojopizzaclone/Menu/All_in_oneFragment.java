@@ -7,7 +7,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -36,6 +35,7 @@ public class All_in_oneFragment extends Fragment implements ItemClickListener {
     private TextView mTvStarters;
     private TextView mTvGarlicBread;
     private TextView mTvDesserts;
+
     private RecyclerView recyclerView;
     private CommunicationListener listener;
     private SearchView searchView;
@@ -47,11 +47,6 @@ public class All_in_oneFragment extends Fragment implements ItemClickListener {
         listener = (CommunicationListener) context;
     }
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-    }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -65,73 +60,45 @@ public class All_in_oneFragment extends Fragment implements ItemClickListener {
         initViews(view);
         buildRecyclerViewData();
         setRecyclerviewAdapter();
-        onClick();
+        recyclerView.scrollToPosition(10);
+        scrollTo();
     }
 
-    private void onClick() {
-        btnBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(getContext(), "Under Progress", Toast.LENGTH_SHORT).show();
-            }
-        });
-        mTvDesserts.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                listener.launchDessertAndDrinkFragment();
-            }
-        });
-        TvFavorite.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(getContext(), "Under Progress", Toast.LENGTH_SHORT).show();
-            }
-        });
-        mTvPredict.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-            }
-        });
+    private void scrollTo() {
         mTvHalfAndHalf.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                listener.launchHalfAndHalfFragment();
+                recyclerView.scrollToPosition(4);
             }
         });
         mTvPartyCombo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                listener.launchPartyComboFragment();
+                recyclerView.scrollToPosition(8);
             }
         });
         mTvBig_10.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                listener.launchBig10Fragment();
+                recyclerView.scrollToPosition(12);
             }
         });
         mTvStarters.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                listener.launchStartersFragment();
+                recyclerView.scrollToPosition(16);
             }
         });
         mTvGarlicBread.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                listener.launchGarlicFragment();
+                recyclerView.scrollToPosition(20);
             }
         });
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+        mTvDesserts.setOnClickListener(new View.OnClickListener() {
             @Override
-            public boolean onQueryTextSubmit(String query) {
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String newText) {
-                return false;
+            public void onClick(View view) {
+                recyclerView.scrollToPosition(24);
             }
         });
     }
@@ -174,17 +141,18 @@ public class All_in_oneFragment extends Fragment implements ItemClickListener {
 
 
     private void initViews(View view) {
+        recyclerView = view.findViewById(R.id.all_menu_recyclerView);
+        searchView=view.findViewById(R.id.searchBar);
+
         btnBack = view.findViewById(R.id.btnback);
         TvFavorite = view.findViewById(R.id.btnfavorite);
         mTvPredict = view.findViewById(R.id.predict);
         mTvHalfAndHalf = view.findViewById(R.id.HalfAndHalf);
-        mTvPartyCombo = view.findViewById(R.id.partycombo);
+        mTvPartyCombo =view.findViewById(R.id.partycombo);
         mTvBig_10 = view.findViewById(R.id.Big_10);
         mTvStarters = view.findViewById(R.id.Starters);
         mTvGarlicBread = view.findViewById(R.id.GarlicBread);
         mTvDesserts = view.findViewById(R.id.Desserts);
-        recyclerView = view.findViewById(R.id.all_menu_recyclerView);
-        searchView=view.findViewById(R.id.searchBar);
     }
 
     @Override
@@ -194,7 +162,6 @@ public class All_in_oneFragment extends Fragment implements ItemClickListener {
         PreferenceHelper.writeStringToPreference(getContext(),"ItemDetail",all_model.getDetailOfItem_1());
         PreferenceHelper.writeStringToPreference(getContext(),"ItemDetail_1",all_model.getDetailOfItem());
         PreferenceHelper.writeStringToPreference(getContext(),"Prize",all_model.getPrize());
-
         listener.launchDetailItemFragment();
     }
 }
