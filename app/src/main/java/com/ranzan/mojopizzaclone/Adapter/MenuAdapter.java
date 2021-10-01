@@ -15,7 +15,7 @@ import com.ranzan.mojopizzaclone.communication.ItemClickListener;
 
 import java.util.ArrayList;
 
-public class MenuAdapter extends RecyclerView.Adapter<MenuViewHolder> {
+public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.MenuViewHolder> {
     private ArrayList<All_Model> all_modelsList;
     private ItemClickListener itemClickListener;
     public MenuAdapter(ArrayList<All_Model> all_modelsList , ItemClickListener itemClickListener){
@@ -40,44 +40,45 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuViewHolder> {
     public int getItemCount() {
         return all_modelsList.size();
     }
-}
-class MenuViewHolder extends RecyclerView.ViewHolder{
-    private TextView TvName;
-    private TextView TvName_1;
-    private TextView TvDetail;
-    private TextView TvDetail_1;
-    private ImageView TvPosterImage;
-    private TextView TvPrize;
-    private ItemClickListener itemClickListener;
-    private RelativeLayout relativeLayout;
+    class MenuViewHolder extends RecyclerView.ViewHolder{
+        private TextView TvName;
+        private TextView TvName_1;
+        private TextView TvDetail;
+        private TextView TvDetail_1;
+        private ImageView TvPosterImage;
+        private TextView TvPrize;
+        private ItemClickListener itemClickListener;
+        private RelativeLayout relativeLayout;
 
-    public MenuViewHolder(@NonNull View itemView, ItemClickListener itemClickListener) {
-        super(itemView);
-        this.itemClickListener = itemClickListener;
-        initView(itemView);
+        public MenuViewHolder(@NonNull View itemView, ItemClickListener itemClickListener) {
+            super(itemView);
+            this.itemClickListener = itemClickListener;
+            initView(itemView);
+        }
+
+        private void initView(View itemView) {
+            TvName = itemView.findViewById(R.id.nameofitem);
+            TvName_1 = itemView.findViewById(R.id.nameofitem_2);
+            TvDetail = itemView.findViewById(R.id.aboutItem);
+            TvDetail_1 = itemView.findViewById(R.id.aboutItem_2);
+            TvPosterImage = itemView.findViewById(R.id.imageifitem);
+            TvPrize = itemView.findViewById(R.id.prize);
+            relativeLayout = itemView.findViewById(R.id.item_RelativeLayout);
+        }
+        public void setData(All_Model all_model){
+            TvName.setText(all_model.getNameOfItem());
+            TvName_1.setText(all_model.getNameOfItem_1());
+            TvDetail.setText(all_model.getDetailOfItem());
+            TvDetail_1.setText(all_model.getDetailOfItem_1());
+            TvPosterImage.setImageResource(all_model.getPosterImage());
+            TvPrize.setText(all_model.getPrize());
+            relativeLayout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    itemClickListener.onItemClick(getAdapterPosition(),all_model);
+                }
+            });
+        }
     }
 
-    private void initView(View itemView) {
-        TvName = itemView.findViewById(R.id.nameofitem);
-        TvName_1 = itemView.findViewById(R.id.nameofitem_2);
-        TvDetail = itemView.findViewById(R.id.aboutItem);
-        TvDetail_1 = itemView.findViewById(R.id.aboutItem_2);
-        TvPosterImage = itemView.findViewById(R.id.imageifitem);
-        TvPrize = itemView.findViewById(R.id.prize);
-        relativeLayout = itemView.findViewById(R.id.item_RelativeLayout);
-    }
-    public void setData(All_Model all_model){
-        TvName.setText(all_model.getNameOfItem());
-        TvName_1.setText(all_model.getNameOfItem_1());
-        TvDetail.setText(all_model.getDetailOfItem());
-        TvDetail_1.setText(all_model.getDetailOfItem_1());
-        TvPosterImage.setImageResource(all_model.getPosterImage());
-        TvPrize.setText(all_model.getPrize());
-        relativeLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                itemClickListener.onItemClick(getAdapterPosition(),all_model);
-            }
-        });
-    }
 }
