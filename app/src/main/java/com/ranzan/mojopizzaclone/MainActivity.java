@@ -39,10 +39,10 @@ public class MainActivity extends AppCompatActivity {
                         fragment = new Home_Fragment();
                         break;
                     case 2:
-                        fragment = new CartFragment();
+                        fragment = new ClubFragment();
                         break;
                     case 3:
-                        fragment = new ClubFragment();
+                        fragment = new CartFragment();
                         break;
                     case 4:
                         fragment = new FreeFragment();
