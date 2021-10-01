@@ -5,7 +5,6 @@ import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
-
 import com.ranzan.mojopizzaclone.Fragments.AccountFragment;
 import com.ranzan.mojopizzaclone.Fragments.CartFragment;
 import com.ranzan.mojopizzaclone.Fragments.ClubFragment;
@@ -55,7 +54,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         bottomNavigation.show(2,true);
-
         bottomNavigation.setOnClickMenuListener(new MeowBottomNavigation.ClickListener() {
             @Override
             public void onClickItem(MeowBottomNavigation.Model item) {
