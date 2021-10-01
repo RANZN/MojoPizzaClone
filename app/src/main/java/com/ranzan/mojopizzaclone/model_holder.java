@@ -6,12 +6,17 @@ import android.widget.ImageView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.ranzan.mojopizzaclone.communication.ItemClickListener;
+import com.ranzan.mojopizzaclone.communication.ItemClickListener_1;
+
 public class model_holder extends RecyclerView.ViewHolder {
+    private ItemClickListener_1 itemClickListener_1;
     private ImageView mImgBtn;
     private RecyclerView recyclerView;
 
-    public model_holder(@NonNull View itemView) {
+    public model_holder(@NonNull View itemView,ItemClickListener_1 itemClickListener_1) {
         super(itemView);
+        this.itemClickListener_1 = itemClickListener_1;
         initViews(itemView);
 
     }
@@ -23,5 +28,11 @@ public class model_holder extends RecyclerView.ViewHolder {
 
     public void setData(Image_model model) {
         mImgBtn.setImageResource(model.getImageId());
+        mImgBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                itemClickListener_1.onClickItem(getAdapterPosition(),model);
+            }
+        });
     }
 }

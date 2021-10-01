@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
                 getSupportFragmentManager().beginTransaction().replace(R.id.frame_main, fragment).commit();
             }
         });
-        bottomNavigation.show(2,true);
+        bottomNavigation.show(1,true);
 
         bottomNavigation.setOnClickMenuListener(new MeowBottomNavigation.ClickListener() {
             @Override

@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.ranzan.mojopizzaclone.Fragments.CartFragment;
 import com.ranzan.mojopizzaclone.Menu.All_in_oneFragment;
 import com.ranzan.mojopizzaclone.Menu.Big10Fragment;
 import com.ranzan.mojopizzaclone.Menu.DessertsAndDrinksFragment;
@@ -75,6 +76,13 @@ private FragmentManager fragmentManager;
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         Detil_ItemFragment detail  = new Detil_ItemFragment();
         fragmentTransaction.add(R.id.contaner,detail,"Detail").addToBackStack("").commit();
+    }
+
+    @Override
+    public void launchCartItemFragment() {
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        CartFragment cartFragment = new CartFragment();
+        fragmentTransaction.add(R.id.contaner,cartFragment,"Cart").addToBackStack("").commit();
     }
 
 }

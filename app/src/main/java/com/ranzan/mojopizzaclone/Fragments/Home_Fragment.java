@@ -14,14 +14,17 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.ranzan.mojopizzaclone.Adapter.All_Model;
 import com.ranzan.mojopizzaclone.DataActivity;
 import com.ranzan.mojopizzaclone.Image_model;
 import com.ranzan.mojopizzaclone.R;
+import com.ranzan.mojopizzaclone.communication.ItemClickListener;
+import com.ranzan.mojopizzaclone.communication.ItemClickListener_1;
 import com.ranzan.mojopizzaclone.model_adapter;
 
 import java.util.ArrayList;
 
-public class Home_Fragment extends Fragment {
+public class Home_Fragment extends Fragment  implements ItemClickListener_1 {
     private ArrayList<Image_model> imageButtons = new ArrayList<>();
     private RecyclerView recyclerView;
     private TextView textView;
@@ -38,14 +41,6 @@ public class Home_Fragment extends Fragment {
         initViews(view);
         buildList();
         setRecyclerView();
-
-        recyclerView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getContext(), DataActivity.class);
-                startActivity(intent);
-            }
-        });
     }
 
     private void buildList() {
@@ -62,7 +57,7 @@ public class Home_Fragment extends Fragment {
     }
 
     private void setRecyclerView() {
-        model_adapter adapter = new model_adapter(imageButtons);
+        model_adapter adapter = new model_adapter(imageButtons,this);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(this.getContext(), 2);
         recyclerView.setLayoutManager(gridLayoutManager);
         recyclerView.setAdapter(adapter);
@@ -71,5 +66,12 @@ public class Home_Fragment extends Fragment {
     private void initViews(View view) {
         recyclerView = view.findViewById(R.id.recycler1);
         textView=view.findViewById(R.id.tvCategory);
+    }
+
+
+    @Override
+    public void onClickItem(int position, Image_model image_model) {
+        Intent intent = new Intent(getContext(),DataActivity.class);
+        startActivity(intent);
     }
 }

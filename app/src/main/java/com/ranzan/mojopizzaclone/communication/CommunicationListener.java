@@ -8,5 +8,6 @@ public interface CommunicationListener {
     void launchPartyComboFragment();
     void launchStartersFragment();
     void launchDetailItemFragment();
+    void launchCartItemFragment();
 
 }
