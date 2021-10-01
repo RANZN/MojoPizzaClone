@@ -13,6 +13,7 @@ import com.ranzan.mojopizzaclone.Fragments.ClubFragment;
 import com.ranzan.mojopizzaclone.Fragments.FreeFragment;
 import com.ranzan.mojopizzaclone.Fragments.Home_Fragment;
 
+
 public class MainActivity extends AppCompatActivity {
 
     private MeowBottomNavigation bottomNavigation;
@@ -50,11 +51,10 @@ public class MainActivity extends AppCompatActivity {
                         fragment = new AccountFragment();
                         break;
                 }
-                getSupportFragmentManager().beginTransaction().replace(R.id.frame_main, fragment).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.frame, fragment).commit();
             }
         });
         bottomNavigation.show(2,true);
-
         bottomNavigation.setOnClickMenuListener(new MeowBottomNavigation.ClickListener() {
             @Override
             public void onClickItem(MeowBottomNavigation.Model item) {

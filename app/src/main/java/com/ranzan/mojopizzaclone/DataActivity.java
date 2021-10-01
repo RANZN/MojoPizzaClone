@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.ranzan.mojopizzaclone.Fragments.CartFragment;
 import com.ranzan.mojopizzaclone.Menu.All_in_oneFragment;
@@ -25,7 +26,6 @@ public class DataActivity extends AppCompatActivity{
         fragmentManager.beginTransaction().add(R.id.contaner,fragment, String.valueOf(bundle)).commit();
     }
 
-    @Override
     public void launchCartItemFragment() {
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         CartFragment cartFragment = new CartFragment();
