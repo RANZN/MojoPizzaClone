@@ -17,43 +17,38 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.google.gson.Gson;
-import com.ranzan.mojopizzaclone.CartAdapter.CartModel;
-import com.ranzan.mojopizzaclone.Helper.PreferenceHelper;
+import com.ranzan.mojopizzaclone.Adapter.All_Model;
 import com.ranzan.mojopizzaclone.R;
+import com.ranzan.mojopizzaclone.communication.FragmentListener;
 
 import java.util.ArrayList;
 
 
 public class Detil_ItemFragment extends Fragment {
-    private ImageView mTv_Show_Image_Poster,closeBtn;
+    private ImageView mTv_Show_Image_Poster, closeBtn;
     private TextView mTv_Show_Name;
     private TextView mTv_Show_Detail;
-    private TextView mTv_Show_Prize;
+    private TextView mTv_Show_Price;
     private Button mBtnAddToCart;
     private TextView mBtnMoreInfo;
-    private String CartName;
-    private String CartPrize;
-    private int CartImage;
-    private int Total;
-    private static ArrayList<CartModel> cartList = new ArrayList<>();
-
-
-    private int imageId;
-    private String Name, Detail, Prize;
+    private static ArrayList<All_Model> cartList = new ArrayList<>();
+    private All_Model all_model;
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         initView(view);
-        imageId = PreferenceHelper.getIntFromPreference(getContext(), "ImagePoster");
-        Name = PreferenceHelper.getStringFromPreference(getContext(), "ItemName");
-        Detail = PreferenceHelper.getStringFromPreference(getContext(), "ItemDetail");
-        Prize = PreferenceHelper.getStringFromPreference(getContext(), "Prize");
+        if(getArguments()!=null){
+            all_model = (All_Model) getArguments().getSerializable("data");
+        }
+        if (all_model != null) {
+            mTv_Show_Image_Poster.setImageResource(all_model.getPosterImage());
+            mTv_Show_Name.setText(all_model.getNameOfItem());
+            mTv_Show_Price.setText(all_model.getPrice());
+            mTv_Show_Detail.setText(all_model.getDetailOfItem());
+        }
 
-        mTv_Show_Image_Poster.setImageResource(imageId);
-        mTv_Show_Name.setText(Name);
-        mTv_Show_Prize.setText(Prize);
-        mTv_Show_Detail.setText(Detail);
+
 //        mBtnMoreInfo.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View view) {
@@ -64,13 +59,7 @@ public class Detil_ItemFragment extends Fragment {
         mBtnAddToCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String Name = mTv_Show_Name.getText().toString();
-                String Prize = mTv_Show_Prize.getText().toString();
-//                int Image = mTv_Show_Image_Poster.;
-                Bundle bundle = new Bundle();
-                bundle.putString("Itemname", Name);
-                bundle.putString("ItePrize", Prize);
-                cartList.add(new CartModel(Name, imageId, Prize, 0));
+                cartList.add(all_model);
                 addDataToPreference();
                 Toast.makeText(getContext(), "Added to Cart", Toast.LENGTH_SHORT).show();
             }
@@ -91,7 +80,7 @@ public class Detil_ItemFragment extends Fragment {
         mTv_Show_Name= view.findViewById(R.id.Trans_Tv_Show_Name);
         mTv_Show_Image_Poster= view.findViewById(R.id.Trans_Poster_Image);
         mTv_Show_Detail= view.findViewById(R.id.Trans_Tv_Show_Detail);
-        mTv_Show_Prize= view.findViewById(R.id.Trans_Tv_Show_Prize);
+        mTv_Show_Price = view.findViewById(R.id.Trans_Tv_Show_Prize);
         mBtnAddToCart= view.findViewById(R.id.Trans_Btn_addToCart);
         mBtnMoreInfo= view.findViewById(R.id.Btnmoreinfo);
         closeBtn=view.findViewById(R.id.closeBtn);
@@ -102,7 +91,6 @@ public class Detil_ItemFragment extends Fragment {
             }
         });
     }
-
 
 
     @Override

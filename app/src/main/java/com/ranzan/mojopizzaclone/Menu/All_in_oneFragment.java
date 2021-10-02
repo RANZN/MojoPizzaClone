@@ -1,5 +1,6 @@
 package com.ranzan.mojopizzaclone.Menu;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,13 +12,15 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.ranzan.mojopizzaclone.Adapter.All_Model;
 import com.ranzan.mojopizzaclone.Adapter.MenuAdapter;
-import com.ranzan.mojopizzaclone.Helper.PreferenceHelper;
 import com.ranzan.mojopizzaclone.R;
+import com.ranzan.mojopizzaclone.communication.FragmentListener;
 import com.ranzan.mojopizzaclone.communication.ItemClickListener;
 
 import java.util.ArrayList;
@@ -37,8 +40,16 @@ public class All_in_oneFragment extends Fragment implements ItemClickListener {
     private RecyclerView recyclerView;
     private SearchView searchView;
     private ArrayList<All_Model> all_modelsList = new ArrayList<>();
+    private NavController navController;
+    private static int scrollNum = 0;
+    private FragmentListener fragmentListener;
 
-private static int scrollNum = 0;
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        fragmentListener= (FragmentListener) context;
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -207,17 +218,26 @@ private static int scrollNum = 0;
         mTvGarlicBread = view.findViewById(R.id.GarlicBread);
         mTvDesserts = view.findViewById(R.id.Desserts);
 
+//        navController = Navigation.findNavController(view);
     }
+    public void setFragmentListener(FragmentListener fragmentListener) {
+        this.fragmentListener = fragmentListener;
+    }
+
 
     @Override
     public void onItemClick(int position, All_Model all_model) {
-        PreferenceHelper.writeIntToPreference(getContext(), "ImagePoster", all_model.getPosterImage());
-        PreferenceHelper.writeStringToPreference(getContext(), "ItemName", all_model.getNameOfItem());
-        PreferenceHelper.writeStringToPreference(getContext(), "ItemDetail", all_model.getDetailOfItem_1());
-        PreferenceHelper.writeStringToPreference(getContext(), "ItemDetail_1", all_model.getDetailOfItem());
-        PreferenceHelper.writeStringToPreference(getContext(), "Prize", all_model.getPrize());
-        Detil_ItemFragment fragment=new Detil_ItemFragment();
-        getFragmentManager().beginTransaction().add(R.id.contaner,fragment).addToBackStack("").commit();
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("data", all_model);
+        fragmentListener.fragmentListener(bundle);
+//        PreferenceHelper.writeIntToPreference(getContext(), "ImagePoster", all_model.getPosterImage());
+//        PreferenceHelper.writeStringToPreference(getContext(), "ItemName", all_model.getNameOfItem());
+//        PreferenceHelper.writeStringToPreference(getContext(), "ItemDetail", all_model.getDetailOfItem_1());
+//        PreferenceHelper.writeStringToPreference(getContext(), "ItemDetail_1", all_model.getDetailOfItem());
+//        PreferenceHelper.writeStringToPreference(getContext(), "Prize", all_model.getPrize());
+//        navController.navigate(R.id.action_all_in_oneFragment_to_detil_ItemFragment, bundle);
+//        Detil_ItemFragment fragment = new Detil_ItemFragment();
+//        fragment.setArguments(bundle);
+//        getFragmentManager().beginTransaction().add(R.id.contaner, fragment).addToBackStack("").commit();
     }
-
 }

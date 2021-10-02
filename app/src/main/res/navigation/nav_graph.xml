@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
     app:startDestination="@id/all_in_oneFragment">
-
     <fragment
         android:id="@+id/all_in_oneFragment"
         android:name="com.ranzan.mojopizzaclone.Menu.All_in_oneFragment"

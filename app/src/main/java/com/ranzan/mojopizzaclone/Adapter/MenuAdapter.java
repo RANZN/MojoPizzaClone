@@ -71,7 +71,7 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.MenuViewHolder
             TvDetail.setText(all_model.getDetailOfItem());
             TvDetail_1.setText(all_model.getDetailOfItem_1());
             TvPosterImage.setImageResource(all_model.getPosterImage());
-            TvPrize.setText(all_model.getPrize());
+            TvPrize.setText(all_model.getPrice());
             relativeLayout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {

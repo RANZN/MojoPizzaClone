@@ -17,8 +17,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.ranzan.mojopizzaclone.CartAdapter.CartAdapter;
-import com.ranzan.mojopizzaclone.CartAdapter.CartModel;
+import com.ranzan.mojopizzaclone.Adapter.All_Model;
+import com.ranzan.mojopizzaclone.Adapter.CartAdapter;
 import com.ranzan.mojopizzaclone.R;
 
 import java.lang.reflect.Type;
@@ -27,7 +27,7 @@ import java.util.ArrayList;
 
 public class CartFragment extends Fragment {
     private RecyclerView recyclerView;
-    private ArrayList<CartModel> cartModelsList = new ArrayList<>();
+    private ArrayList<All_Model> cartModelsList = new ArrayList<>();
     private CartAdapter cartAdapter;
     private TextView tvTotal;
     private static int total = 0;
@@ -45,7 +45,7 @@ public class CartFragment extends Fragment {
         SharedPreferences sharedPreferences = requireContext().getSharedPreferences("shared preferences", MODE_PRIVATE);
         Gson gson = new Gson();
         String json = sharedPreferences.getString("dataList", null);
-        Type type = new TypeToken<ArrayList<CartModel>>() {
+        Type type = new TypeToken<ArrayList<All_Model>>() {
         }.getType();
         cartModelsList = gson.fromJson(json, type);
         if (cartModelsList == null) {

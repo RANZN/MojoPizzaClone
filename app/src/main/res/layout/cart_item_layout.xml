@@ -2,40 +2,43 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:cardCornerRadius="15dp"
+    android:layout_margin="5dp"
     android:elevation="5dp"
+    app:cardCornerRadius="20dp"
+    android:background="@color/white"
     android:layout_height="wrap_content">
+
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        >
+        android:layout_height="wrap_content">
 
         <ImageView
-            android:id="@+id/TvCartImageItem"
+            android:id="@+id/cartImagePoster"
             android:layout_width="200dp"
             android:layout_height="200dp"
             android:src="@drawable/big_1" />
 
         <TextView
-            android:id="@+id/CartNameItem"
+            android:id="@+id/cartItemName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_marginTop="15dp"
-            android:layout_toRightOf="@+id/TvCartImageItem"
+            android:layout_toRightOf="@+id/cartImagePoster"
             android:text="Name"
             android:textColor="@color/black"
             android:textSize="15dp" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toRightOf="@+id/TvCartImageItem"
-            android:layout_below="@+id/CartNameItem"
+            android:id="@+id/cartItemPrice"
+            android:layout_below="@+id/cartItemName"
             android:text="Name"
             android:textSize="15dp"
             android:layout_marginTop="15dp"
             android:layout_marginStart="10dp"
-            android:id="@+id/CartprizeItem"/>
+            android:layout_toRightOf="@+id/cartImagePoster" />
     </RelativeLayout>
 
 
