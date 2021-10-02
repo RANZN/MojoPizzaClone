@@ -8,7 +8,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.ranzan.mojopizzaclone.R;
@@ -57,7 +56,6 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
         private ImageView ImagePoster, addBtn, subBtn, deleteBtn;
         private TextView Name, price, quantity;
         private ItemClickListener itemClickListener;
-        private CardView cardView;
 
         public CartViewHolder(@NonNull View itemView, ItemClickListener itemClickListener) {
             super(itemView);
@@ -78,7 +76,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
         public void setData(CartModel cartModel) {
             if (cartModel != null) {
                 ImagePoster.setImageResource(cartModel.getAll_model().getPosterImage());
-                Name.setText(cartModel.getAll_model().getNameOfItem());
+                Name.setText(cartModel.getAll_model().getNameOfItem_1());
                 price.setText(cartModel.getAll_model().getPrice());
                 addBtn.setOnClickListener(new View.OnClickListener() {
                     @Override

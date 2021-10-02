@@ -44,7 +44,7 @@ public class Detil_ItemFragment extends Fragment {
         }
         if (all_model != null) {
             mTv_Show_Image_Poster.setImageResource(all_model.getPosterImage());
-            mTv_Show_Name.setText(all_model.getNameOfItem());
+            mTv_Show_Name.setText(all_model.getNameOfItem_1());
             mTv_Show_Price.setText(all_model.getPrice());
             mTv_Show_Detail.setText(all_model.getDetailOfItem());
         }

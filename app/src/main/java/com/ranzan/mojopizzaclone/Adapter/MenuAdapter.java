@@ -18,15 +18,20 @@ import java.util.ArrayList;
 public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.MenuViewHolder> {
     private ArrayList<All_Model> all_modelsList;
     private ItemClickListener itemClickListener;
-    public MenuAdapter(ArrayList<All_Model> all_modelsList , ItemClickListener itemClickListener){
+
+    public MenuAdapter(ArrayList<All_Model> all_modelsList, ItemClickListener itemClickListener) {
         this.all_modelsList = all_modelsList;
         this.itemClickListener = itemClickListener;
+    }
+
+    public MenuAdapter(ArrayList<All_Model> all_modelsList) {
+        this.all_modelsList = all_modelsList;
     }
 
     @NonNull
     @Override
     public MenuViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_layout_data,parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_layout_data, parent, false);
         return new MenuViewHolder(view, itemClickListener);
     }
 
@@ -40,7 +45,14 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.MenuViewHolder
     public int getItemCount() {
         return all_modelsList.size();
     }
-    class MenuViewHolder extends RecyclerView.ViewHolder{
+
+    public void updateUI(ArrayList<All_Model> all_modelsList) {
+        this.all_modelsList = all_modelsList;
+        notifyDataSetChanged();
+
+    }
+
+    class MenuViewHolder extends RecyclerView.ViewHolder {
         private TextView TvName;
         private TextView TvName_1;
         private TextView TvDetail;

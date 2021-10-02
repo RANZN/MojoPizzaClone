@@ -6,14 +6,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -40,14 +39,15 @@ public class All_in_oneFragment extends Fragment implements ItemClickListener {
     private RecyclerView recyclerView;
     private SearchView searchView;
     private ArrayList<All_Model> all_modelsList = new ArrayList<>();
-    private NavController navController;
-    private static int scrollNum = 0;
+    private  int scrollNum = 0;
     private FragmentListener fragmentListener;
+    private MenuAdapter menuAdapter;
+    private LinearLayout layout;
 
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
-        fragmentListener= (FragmentListener) context;
+        fragmentListener = (FragmentListener) context;
     }
 
     @Override
@@ -65,6 +65,30 @@ public class All_in_oneFragment extends Fragment implements ItemClickListener {
         setRecyclerviewAdapter();
         scrollTo();
         autoScrollTo();
+        searchData();
+    }
+
+    private void searchData() {
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                layout.setVisibility(View.GONE);
+                ArrayList<All_Model> filteredList = new ArrayList<>();
+                for (All_Model i : all_modelsList) {
+                    if (i.getNameOfItem_1().toLowerCase().contains(newText.toLowerCase()))
+                        filteredList.add(i);
+                }
+                menuAdapter.updateUI(filteredList);
+
+                return false;
+            }
+        });
     }
 
     private void autoScrollTo() {
@@ -135,7 +159,7 @@ public class All_in_oneFragment extends Fragment implements ItemClickListener {
 
 
     private void setRecyclerviewAdapter() {
-        MenuAdapter menuAdapter = new MenuAdapter(all_modelsList, this);
+        menuAdapter = new MenuAdapter(all_modelsList, this);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setAdapter(menuAdapter);
@@ -183,22 +207,17 @@ public class All_in_oneFragment extends Fragment implements ItemClickListener {
         all_modelsList.add(new All_Model("Half & Half Pizzas","Veg - Non-Veg Half Half","Cant't make up your mind? No worries get 2 different haves in one big 10-inch pizza","The fight ends today! Get your own half now. pick a half each of any 2  & make 1 big 10 inch pizza ", R.drawable.garlic_2,"$300"));
         all_modelsList.add(new All_Model("Half & Half Pizzas","Veg - Non-Veg Half Half","Cant't make up your mind? No worries get 2 different haves in one big 10-inch pizza","The fight ends today! Get your own half now. pick a half each of any 2  & make 1 big 10 inch pizza ", R.drawable.garlic_3,"$200"));
         all_modelsList.add(new All_Model("Half & Half Pizzas","Veg - Non-Veg Half Half","Cant't make up your mind? No worries get 2 different haves in one big 10-inch pizza","The fight ends today! Get your own half now. pick a half each of any 2  & make 1 big 10 inch pizza ", R.drawable.garlic_4,"$260"));
-        all_modelsList.add(new All_Model("Half & Half Pizzas","Veg - Non-Veg Half Half","Cant't make up your mind? No worries get 2 different haves in one big 10-inch pizza","The fight ends today! Get your own half now. pick a half each of any 2  & make 1 big 10 inch pizza ", R.drawable.garlic_5,"$390"));
-        all_modelsList.add(new All_Model("Half & Half Pizzas","Veg - Non-Veg Half Half","Cant't make up your mind? No worries get 2 different haves in one big 10-inch pizza","The fight ends today! Get your own half now. pick a half each of any 2  & make 1 big 10 inch pizza ", R.drawable.garlic_6,"$400"));
+        all_modelsList.add(new All_Model("Half & Half Pizzas", "Veg - Non-Veg Half Half", "Cant't make up your mind? No worries get 2 different haves in one big 10-inch pizza", "The fight ends today! Get your own half now. pick a half each of any 2  & make 1 big 10 inch pizza ", R.drawable.garlic_5, "$390"));
+        all_modelsList.add(new All_Model("Half & Half Pizzas", "Veg - Non-Veg Half Half", "Cant't make up your mind? No worries get 2 different haves in one big 10-inch pizza", "The fight ends today! Get your own half now. pick a half each of any 2  & make 1 big 10 inch pizza ", R.drawable.garlic_6, "$400"));
 
 
-
-        all_modelsList.add(new All_Model("Half & Half Pizzas","Veg - Non-Veg Half Half","Cant't make up your mind? No worries get 2 different haves in one big 10-inch pizza","The fight ends today! Get your own half now. pick a half each of any 2  & make 1 big 10 inch pizza ", R.drawable.desserts_1,"$410"));
-        all_modelsList.add(new All_Model("Half & Half Pizzas","Veg - Non-Veg Half Half","Cant't make up your mind? No worries get 2 different haves in one big 10-inch pizza","The fight ends today! Get your own half now. pick a half each of any 2  & make 1 big 10 inch pizza ", R.drawable.desserts_2,"$300"));
-        all_modelsList.add(new All_Model("Half & Half Pizzas","Veg - Non-Veg Half Half","Cant't make up your mind? No worries get 2 different haves in one big 10-inch pizza","The fight ends today! Get your own half now. pick a half each of any 2  & make 1 big 10 inch pizza ", R.drawable.desserts_3,"$200"));
-        all_modelsList.add(new All_Model("Half & Half Pizzas","Veg - Non-Veg Half Half","Cant't make up your mind? No worries get 2 different haves in one big 10-inch pizza","The fight ends today! Get your own half now. pick a half each of any 2  & make 1 big 10 inch pizza ", R.drawable.desserts_4,"$260"));
-        all_modelsList.add(new All_Model("Half & Half Pizzas","Veg - Non-Veg Half Half","Cant't make up your mind? No worries get 2 different haves in one big 10-inch pizza","The fight ends today! Get your own half now. pick a half each of any 2  & make 1 big 10 inch pizza ", R.drawable.desserts_5,"$390"));
-        all_modelsList.add(new All_Model("Half & Half Pizzas","Veg - Non-Veg Half Half","Cant't make up your mind? No worries get 2 different haves in one big 10-inch pizza","The fight ends today! Get your own half now. pick a half each of any 2  & make 1 big 10 inch pizza ", R.drawable.desserts_6,"$400"));
-        all_modelsList.add(new All_Model("Half & Half Pizzas","Veg - Non-Veg Half Half","Cant't make up your mind? No worries get 2 different haves in one big 10-inch pizza","The fight ends today! Get your own half now. pick a half each of any 2  & make 1 big 10 inch pizza ", R.drawable.desserts_7,"$540"));
-
-
-
-
+        all_modelsList.add(new All_Model("Half & Half Pizzas", "Dessert 1", "Cant't make up your mind? No worries get 2 different haves in one big 10-inch pizza", "The fight ends today! Get your own half now. pick a half each of any 2  & make 1 big 10 inch pizza ", R.drawable.desserts_1, "$410"));
+        all_modelsList.add(new All_Model("Half & Half Pizzas", "Dessert 2", "Cant't make up your mind? No worries get 2 different haves in one big 10-inch pizza", "The fight ends today! Get your own half now. pick a half each of any 2  & make 1 big 10 inch pizza ", R.drawable.desserts_2, "$300"));
+        all_modelsList.add(new All_Model("Half & Half Pizzas", "Dessert 3", "Cant't make up your mind? No worries get 2 different haves in one big 10-inch pizza", "The fight ends today! Get your own half now. pick a half each of any 2  & make 1 big 10 inch pizza ", R.drawable.desserts_3, "$200"));
+        all_modelsList.add(new All_Model("Half & Half Pizzas", "Dessert 4", "Cant't make up your mind? No worries get 2 different haves in one big 10-inch pizza", "The fight ends today! Get your own half now. pick a half each of any 2  & make 1 big 10 inch pizza ", R.drawable.desserts_4, "$260"));
+        all_modelsList.add(new All_Model("Half & Half Pizzas", "Dessert 5", "Cant't make up your mind? No worries get 2 different haves in one big 10-inch pizza", "The fight ends today! Get your own half now. pick a half each of any 2  & make 1 big 10 inch pizza ", R.drawable.desserts_5, "$390"));
+        all_modelsList.add(new All_Model("Half & Half Pizzas", "Dessert 6", "Cant't make up your mind? No worries get 2 different haves in one big 10-inch pizza", "The fight ends today! Get your own half now. pick a half each of any 2  & make 1 big 10 inch pizza ", R.drawable.desserts_6, "$400"));
+        all_modelsList.add(new All_Model("Half & Half Pizzas", "Dessert 7", "Cant't make up your mind? No worries get 2 different haves in one big 10-inch pizza", "The fight ends today! Get your own half now. pick a half each of any 2  & make 1 big 10 inch pizza ", R.drawable.desserts_7, "$540"));
 
 
     }
@@ -217,7 +236,7 @@ public class All_in_oneFragment extends Fragment implements ItemClickListener {
         mTvStarters = view.findViewById(R.id.Starters);
         mTvGarlicBread = view.findViewById(R.id.GarlicBread);
         mTvDesserts = view.findViewById(R.id.Desserts);
-
+        layout = view.findViewById(R.id.allmenueLinearLayout);
 //        navController = Navigation.findNavController(view);
     }
     public void setFragmentListener(FragmentListener fragmentListener) {
@@ -230,14 +249,5 @@ public class All_in_oneFragment extends Fragment implements ItemClickListener {
         Bundle bundle = new Bundle();
         bundle.putSerializable("data", all_model);
         fragmentListener.fragmentListener(bundle);
-//        PreferenceHelper.writeIntToPreference(getContext(), "ImagePoster", all_model.getPosterImage());
-//        PreferenceHelper.writeStringToPreference(getContext(), "ItemName", all_model.getNameOfItem());
-//        PreferenceHelper.writeStringToPreference(getContext(), "ItemDetail", all_model.getDetailOfItem_1());
-//        PreferenceHelper.writeStringToPreference(getContext(), "ItemDetail_1", all_model.getDetailOfItem());
-//        PreferenceHelper.writeStringToPreference(getContext(), "Prize", all_model.getPrize());
-//        navController.navigate(R.id.action_all_in_oneFragment_to_detil_ItemFragment, bundle);
-//        Detil_ItemFragment fragment = new Detil_ItemFragment();
-//        fragment.setArguments(bundle);
-//        getFragmentManager().beginTransaction().add(R.id.contaner, fragment).addToBackStack("").commit();
     }
 }

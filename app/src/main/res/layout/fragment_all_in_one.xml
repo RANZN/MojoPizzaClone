@@ -43,6 +43,8 @@
 
 
     <HorizontalScrollView
+        android:scrollbars="none"
+        android:background="#70CCCCCC"
         android:id="@+id/Scroll"
         android:layout_marginTop="2dp"
         android:layout_below="@id/btnfavorite"
