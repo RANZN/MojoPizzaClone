@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -30,6 +31,7 @@ public class CartFragment extends Fragment {
     private ArrayList<All_Model> cartModelsList = new ArrayList<>();
     private CartAdapter cartAdapter;
     private TextView tvTotal;
+    private Button btn;
     private static int total = 0;
 
 
@@ -67,6 +69,12 @@ public class CartFragment extends Fragment {
         super.onResume();
         loadData();
         cartAdapter.updateUI(cartModelsList);
+        for (All_Model i : cartModelsList) {
+            String s = i.getPrice();
+            int n = Integer.parseInt(s.substring(1));
+            total += n;
+        }
+        tvTotal.setText(total+"");
     }
 
     private void setCartAdapter() {
@@ -78,6 +86,8 @@ public class CartFragment extends Fragment {
 
     private void initViews(View view) {
         recyclerView = view.findViewById(R.id.CartRecyclerView);
-        tvTotal = view.findViewById(R.id.TvShowCart_Prize);
+        tvTotal = view.findViewById(R.id.cartTotalPrice);
+        tvTotal = view.findViewById(R.id.cartTotalPrice);
+        btn = view.findViewById(R.id.cartOrderBtn);
     }
 }

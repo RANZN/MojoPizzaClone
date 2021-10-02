@@ -3,6 +3,8 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/PRAKASH RANJAN/AndroidStudioProjects/MojoPizzaClone/app/src/main/res/drawable/add_bg.xml" value="0.26614583333333336" />
+        <entry key="..\:/Users/PRAKASH RANJAN/AndroidStudioProjects/MojoPizzaClone/app/src/main/res/drawable/ic_add.xml" value="0.26614583333333336" />
         <entry key="..\:/Users/PRAKASH RANJAN/AndroidStudioProjects/MojoPizzaClone/app/src/main/res/drawable/ic_close.xml" value="0.26614583333333336" />
         <entry key="..\:/Users/PRAKASH RANJAN/AndroidStudioProjects/MojoPizzaClone/app/src/main/res/layout/activity_data.xml" value="0.1" />
         <entry key="..\:/Users/PRAKASH RANJAN/AndroidStudioProjects/MojoPizzaClone/app/src/main/res/layout/activity_main.xml" value="0.1" />
@@ -10,7 +12,7 @@
         <entry key="..\:/Users/PRAKASH RANJAN/AndroidStudioProjects/MojoPizzaClone/app/src/main/res/layout/cart_item_layout.xml" value="0.264" />
         <entry key="..\:/Users/PRAKASH RANJAN/AndroidStudioProjects/MojoPizzaClone/app/src/main/res/layout/fragment_all_in_one.xml" value="0.176" />
         <entry key="..\:/Users/PRAKASH RANJAN/AndroidStudioProjects/MojoPizzaClone/app/src/main/res/layout/fragment_big10.xml" value="0.25" />
-        <entry key="..\:/Users/PRAKASH RANJAN/AndroidStudioProjects/MojoPizzaClone/app/src/main/res/layout/fragment_cart.xml" value="0.22010869565217392" />
+        <entry key="..\:/Users/PRAKASH RANJAN/AndroidStudioProjects/MojoPizzaClone/app/src/main/res/layout/fragment_cart.xml" value="0.2" />
         <entry key="..\:/Users/PRAKASH RANJAN/AndroidStudioProjects/MojoPizzaClone/app/src/main/res/layout/fragment_desserts_and_drinks.xml" value="0.25" />
         <entry key="..\:/Users/PRAKASH RANJAN/AndroidStudioProjects/MojoPizzaClone/app/src/main/res/layout/fragment_detil__item.xml" value="0.25" />
         <entry key="..\:/Users/PRAKASH RANJAN/AndroidStudioProjects/MojoPizzaClone/app/src/main/res/layout/fragment_garlic_breads.xml" value="0.25" />
