@@ -20,7 +20,6 @@ public class Splash extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_splash);
 
         lottieAnimationView=findViewById(R.id.lottie);
@@ -39,7 +38,6 @@ public class Splash extends AppCompatActivity {
         lottieAnimationView.setAnimation(animation4);
 
         //to remove statusbar
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         //splash screen
         Runnable runnable=new Runnable() {

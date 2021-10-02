@@ -6,7 +6,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import com.etebarian.meowbottomnavigation.MeowBottomNavigation;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.ranzan.mojopizzaclone.Fragments.AccountFragment;
 import com.ranzan.mojopizzaclone.Fragments.CartFragment;
 import com.ranzan.mojopizzaclone.Fragments.ClubFragment;
@@ -53,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
                 getSupportFragmentManager().beginTransaction().replace(R.id.frame_main, fragment).commit();
             }
         });
-        bottomNavigation.show(2,true);
+        bottomNavigation.show(1,true);
 
         bottomNavigation.setOnClickMenuListener(new MeowBottomNavigation.ClickListener() {
             @Override
