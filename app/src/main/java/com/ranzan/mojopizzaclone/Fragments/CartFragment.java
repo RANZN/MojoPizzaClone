@@ -20,26 +20,25 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.ranzan.mojopizzaclone.Adapter.All_Model;
 import com.ranzan.mojopizzaclone.Adapter.CartAdapter;
+import com.ranzan.mojopizzaclone.Adapter.CartModel;
 import com.ranzan.mojopizzaclone.R;
+import com.ranzan.mojopizzaclone.communication.ItemClickListener;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 
 
-public class CartFragment extends Fragment {
+public class CartFragment extends Fragment implements ItemClickListener {
     private RecyclerView recyclerView;
-    private ArrayList<All_Model> cartModelsList = new ArrayList<>();
+    private ArrayList<CartModel> cartModelsList = new ArrayList<>();
     private CartAdapter cartAdapter;
     private TextView tvTotal;
     private Button btn;
-    private static int total = 0;
-
+    private int total = 0;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-
         return inflater.inflate(R.layout.fragment_cart, container, false);
     }
 
@@ -47,35 +46,29 @@ public class CartFragment extends Fragment {
         SharedPreferences sharedPreferences = requireContext().getSharedPreferences("shared preferences", MODE_PRIVATE);
         Gson gson = new Gson();
         String json = sharedPreferences.getString("dataList", null);
-        Type type = new TypeToken<ArrayList<All_Model>>() {
+        Type type = new TypeToken<ArrayList<CartModel>>() {
         }.getType();
-        cartModelsList = gson.fromJson(json, type);
         if (cartModelsList == null) {
             cartModelsList = new ArrayList<>();
-        }
+        } else if (gson.fromJson(json, type) != null)
+            cartModelsList.addAll(gson.fromJson(json, type));
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
         initViews(view);
-
         setCartAdapter();
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
         loadData();
         cartAdapter.updateUI(cartModelsList);
-        for (All_Model i : cartModelsList) {
-            String s = i.getPrice();
+        for (CartModel i : cartModelsList) {
+            String s = i.getAll_model().getPrice();
             int n = Integer.parseInt(s.substring(1));
             total += n;
         }
-        tvTotal.setText(total+"");
+        tvTotal.setText("$ " + total);
     }
+
 
     private void setCartAdapter() {
         cartAdapter = new CartAdapter(cartModelsList);
@@ -89,5 +82,10 @@ public class CartFragment extends Fragment {
         tvTotal = view.findViewById(R.id.cartTotalPrice);
         tvTotal = view.findViewById(R.id.cartTotalPrice);
         btn = view.findViewById(R.id.cartOrderBtn);
+    }
+
+    @Override
+    public void onItemClick(int position, All_Model all_model) {
+
     }
 }

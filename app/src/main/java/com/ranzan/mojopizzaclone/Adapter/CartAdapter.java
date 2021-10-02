@@ -13,10 +13,10 @@ import com.ranzan.mojopizzaclone.R;
 
 import java.util.ArrayList;
 
-public class CartAdapter extends RecyclerView.Adapter<CartViewHolder> {
-    private ArrayList<All_Model> cartModelsList;
+public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder> {
+    private ArrayList<CartModel> cartModelsList;
 
-    public CartAdapter(ArrayList<All_Model> cartModelList) {
+    public CartAdapter(ArrayList<CartModel> cartModelList) {
         this.cartModelsList = cartModelList;
     }
 
@@ -29,7 +29,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull CartViewHolder holder, int position) {
-        All_Model cartModel = cartModelsList.get(position);
+        CartModel cartModel = cartModelsList.get(position);
         holder.setData(cartModel);
     }
 
@@ -38,32 +38,44 @@ public class CartAdapter extends RecyclerView.Adapter<CartViewHolder> {
         return cartModelsList.size();
     }
 
-    public void updateUI(ArrayList<All_Model> cartModelList) {
+    public void updateUI(ArrayList<CartModel> cartModelList) {
         this.cartModelsList = cartModelList;
         notifyDataSetChanged();
     }
-}
-class CartViewHolder extends RecyclerView.ViewHolder{
-    private ImageView ImagePoster;
-    private TextView Name;
-    private TextView price;
 
-    public CartViewHolder(@NonNull View itemView) {
-        super(itemView);
-        initView(itemView);
-    }
 
-    private void initView(View itemView) {
-        ImagePoster = itemView.findViewById(R.id.cartImagePoster);
-        Name = itemView.findViewById(R.id.cartItemName);
-        price = itemView.findViewById(R.id.cartItemPrice);
-    }
 
-    public void setData(All_Model cartModel) {
-        if(cartModel!=null) {
-            ImagePoster.setImageResource(cartModel.getPosterImage());
-            Name.setText(cartModel.getNameOfItem());
-            price.setText(cartModel.getPrice());
+    class CartViewHolder extends RecyclerView.ViewHolder {
+        private ImageView ImagePoster, addBtn, subBtn;
+        private TextView Name, price, quantity;
+
+
+        public CartViewHolder(@NonNull View itemView) {
+            super(itemView);
+            initView(itemView);
+        }
+
+        private void initView(View itemView) {
+            ImagePoster = itemView.findViewById(R.id.cartImagePoster);
+            Name = itemView.findViewById(R.id.cartItemName);
+            price = itemView.findViewById(R.id.cartItemPrice);
+            addBtn = itemView.findViewById(R.id.cartQuantityAdd);
+            subBtn = itemView.findViewById(R.id.cartQuantitySub);
+            quantity = itemView.findViewById(R.id.cartQuantity);
+        }
+
+        public void setData(CartModel cartModel) {
+            if (cartModel != null) {
+                ImagePoster.setImageResource(cartModel.getAll_model().getPosterImage());
+                Name.setText(cartModel.getAll_model().getNameOfItem());
+                price.setText(cartModel.getAll_model().getPrice());
+            }
         }
     }
 }
+
+
+
+
+
+

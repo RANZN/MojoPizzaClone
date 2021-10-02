@@ -18,6 +18,7 @@ import androidx.fragment.app.Fragment;
 
 import com.google.gson.Gson;
 import com.ranzan.mojopizzaclone.Adapter.All_Model;
+import com.ranzan.mojopizzaclone.Adapter.CartModel;
 import com.ranzan.mojopizzaclone.R;
 import com.ranzan.mojopizzaclone.communication.FragmentListener;
 
@@ -31,7 +32,7 @@ public class Detil_ItemFragment extends Fragment {
     private TextView mTv_Show_Price;
     private Button mBtnAddToCart;
     private TextView mBtnMoreInfo;
-    private static ArrayList<All_Model> cartList = new ArrayList<>();
+    private static ArrayList<CartModel> cartList = new ArrayList<>();
     private All_Model all_model;
 
     @Override
@@ -59,12 +60,11 @@ public class Detil_ItemFragment extends Fragment {
         mBtnAddToCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                cartList.add(all_model);
+                cartList.add(new CartModel(all_model,1));
                 addDataToPreference();
                 Toast.makeText(getContext(), "Added to Cart", Toast.LENGTH_SHORT).show();
             }
         });
-
     }
 
     private void addDataToPreference() {
