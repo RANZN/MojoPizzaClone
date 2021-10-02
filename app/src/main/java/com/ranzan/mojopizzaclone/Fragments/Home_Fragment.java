@@ -59,8 +59,10 @@ public class Home_Fragment extends Fragment {
         compositePageTransformer.addTransformer(new ViewPager2.PageTransformer() {
             @Override
             public void transformPage(@NonNull View page, float position) {
-                float r=1-Math.abs(position);
-                page.setScaleY(0.85f+r*0.15f);
+
+                page.setTranslationX(-position*page.getWidth());
+
+                page.setAlpha(1-Math.abs(position));
             }
         });
         viewPager2.setPageTransformer(compositePageTransformer);
