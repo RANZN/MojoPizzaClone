@@ -3,21 +3,32 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".Fragments.Home_Fragment">
 
-    <TextView
-        android:text="Tap to get your location"
-        android:gravity="center"
-        android:textColor="@color/white"
-        android:textSize="20dp"
+    <View
+        android:id="@+id/view1"
+        android:layout_width="match_parent"
+        android:layout_height="15dp"
+        android:background="#f49426"
+        />
+
+    <EditText
         android:id="@+id/search1"
+        android:layout_below="@+id/view1"
         android:layout_width="match_parent"
         android:layout_height="45dp"
-        android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
+        android:layout_marginStart="5dp"
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="10dp"
+        android:drawableEnd="@drawable/location"
+        android:paddingEnd="10dp"
         android:background="@drawable/shape1"
+        android:textStyle="italic"
+        android:text="  Hey Buddy Tell Us Your Location..."
+        android:textColor="#f49426"
+        android:textSize="15dp"
         android:padding="3dp" />
 
     <ScrollView
@@ -30,10 +41,19 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/Slider"
+                android:paddingStart="30dp"
+                android:paddingEnd="30dp"
+                android:layout_width="match_parent"
+                android:layout_height="200dp" />
+
             <HorizontalScrollView
                 android:id="@+id/scroll1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_below="@+id/Slider"
+                android:scrollbars="none"
                 >
 
                 <LinearLayout
@@ -41,33 +61,36 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
-                    <ImageView
+                    <com.makeramen.roundedimageview.RoundedImageView
                         android:layout_width="300dp"
                         android:layout_height="200dp"
                         android:layout_below="@+id/scroll1"
                         android:layout_margin="5dp"
                         android:background="@drawable/shape2"
-                        android:padding="2dp"
+                        android:padding="10dp"
+                        app:riv_corner_radius="20dp"
                         android:scaleType="fitXY"
                         android:src="@drawable/a" />
 
-                    <ImageView
+                    <com.makeramen.roundedimageview.RoundedImageView
                         android:layout_width="300dp"
                         android:layout_height="200dp"
                         android:layout_below="@+id/scroll1"
                         android:layout_margin="5dp"
                         android:background="@drawable/shape2"
-                        android:padding="2dp"
+                        android:padding="10dp"
+                        app:riv_corner_radius="20dp"
                         android:scaleType="fitXY"
                         android:src="@drawable/b" />
 
-                    <ImageView
+                    <com.makeramen.roundedimageview.RoundedImageView
                         android:layout_width="300dp"
                         android:layout_height="200dp"
                         android:layout_below="@+id/scroll1"
                         android:layout_margin="5dp"
                         android:background="@drawable/shape2"
-                        android:padding="2dp"
+                        android:padding="10dp"
+                        app:riv_corner_radius="20dp"
                         android:scaleType="fitXY"
                         android:src="@drawable/c" />
                 </LinearLayout>
@@ -78,16 +101,17 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_below="@+id/scroll1"
-                android:text="Category"
-
+                android:text="   Shop By Categories"
+                android:textColor="@color/black"
+                android:textSize="20dp"
+                android:textStyle="bold"
                 />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recycler1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/tvCategory"
-                android:text="Hello World!">
+                android:layout_below="@+id/tvCategory">
 
             </androidx.recyclerview.widget.RecyclerView>
 

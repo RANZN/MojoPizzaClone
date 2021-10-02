@@ -13,7 +13,6 @@ import com.ranzan.mojopizzaclone.Fragments.ClubFragment;
 import com.ranzan.mojopizzaclone.Fragments.FreeFragment;
 import com.ranzan.mojopizzaclone.Fragments.Home_Fragment;
 
-
 public class MainActivity extends AppCompatActivity {
 
     private MeowBottomNavigation bottomNavigation;
