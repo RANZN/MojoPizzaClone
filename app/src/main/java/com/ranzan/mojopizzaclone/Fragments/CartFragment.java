@@ -61,6 +61,10 @@ public class CartFragment extends Fragment implements ItemClickListener {
         setCartAdapter();
         loadData();
         cartAdapter.updateUI(cartModelsList);
+        setTotalAmount();
+    }
+
+    void setTotalAmount() {
         for (CartModel i : cartModelsList) {
             String s = i.getAll_model().getPrice();
             int n = Integer.parseInt(s.substring(1));
@@ -69,9 +73,8 @@ public class CartFragment extends Fragment implements ItemClickListener {
         tvTotal.setText("$ " + total);
     }
 
-
     private void setCartAdapter() {
-        cartAdapter = new CartAdapter(cartModelsList);
+        cartAdapter = new CartAdapter(cartModelsList, this);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setAdapter(cartAdapter);
@@ -86,6 +89,19 @@ public class CartFragment extends Fragment implements ItemClickListener {
 
     @Override
     public void onItemClick(int position, All_Model all_model) {
+        cartModelsList.remove(position);
+        cartAdapter.updateUI(cartModelsList);
+        setTotalAmount();
+        addDataToPreference();
+    }
 
+
+    private void addDataToPreference() {
+        SharedPreferences sharedPreferences = getContext().getSharedPreferences("shared preferences", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        Gson gson = new Gson();
+        String json = gson.toJson(cartModelsList);
+        editor.putString("dataList", json);
+        editor.apply();
     }
 }
