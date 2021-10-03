@@ -17,12 +17,17 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.etebarian.meowbottomnavigation.MeowBottomNavigation
-        android:background="@color/white"
+        android:layout_alignParentBottom="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/bottom_navigation"
+        app:mbn_circleColor="#f49426"
+        app:mbn_selectedIconColor="@color/white"
+        app:mbn_countTextColor="@color/white"
+        app:mbn_backgroundBottomColor="#f49426"
+        app:mbn_defaultIconColor="@color/white"
+        android:background="@color/white"
         app:itemIconTint="#5A5A5A"
         android:elevation="5dp"
-        app:menu="@menu/menu_bottom"
         app:layout_constraintBottom_toBottomOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

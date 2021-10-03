@@ -7,37 +7,56 @@
     tools:context=".Fragments.Home_Fragment">
 
     <View
-        android:id="@+id/getLocation"
-        android:layout_width="match_parent"
-        android:layout_height="45dp"
-        android:background="#CCC" />
-
-    <TextView
         android:id="@+id/view1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:drawableRight="@drawable/ic_down"
-        android:text="DELIVER AT"
-        android:textColor="@color/black"
-        android:textSize="14sp"
-        android:textStyle="bold" />
+        android:layout_width="match_parent"
+        android:layout_height="15dp"
+        android:background="#f49426" />
 
     <TextView
         android:id="@+id/location"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/view1"
-        android:layout_marginLeft="12dp"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_below="@id/view1"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/home_shape"
+        android:drawableEnd="@drawable/location"
+        android:gravity="center"
+        android:padding="3dp"
+        android:paddingEnd="10dp"
         android:text="Mojo Pizza"
-        android:textColor="@color/black"
-        android:textSize="14sp" />
+        android:textColor="#f44c26"
+        android:textSize="18sp"
+        android:textStyle="italic" />
+
+    <!--    <TextView-->
+    <!--        android:id="@+id/view1"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_marginLeft="10dp"-->
+    <!--        android:drawableRight="@drawable/ic_down"-->
+    <!--        android:text="DELIVER AT"-->
+    <!--        android:textColor="@color/black"-->
+    <!--        android:textSize="14sp"-->
+    <!--        android:textStyle="bold" />-->
+
+    <!--    <TextView-->
+    <!--        android:id="@+id/location"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_below="@+id/view1"-->
+    <!--        android:layout_marginLeft="12dp"-->
+    <!--        android:text="Mojo Pizza"-->
+    <!--        android:textColor="@color/black"-->
+    <!--        android:textSize="14sp" />-->
 
     <ScrollView
         android:layout_width="match_parent"
-        android:scrollbars="none"
         android:layout_height="match_parent"
-        android:layout_below="@+id/getLocation">
+        android:layout_below="@+id/location"
+        android:scrollbars="none">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -56,8 +75,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/Slider"
-                android:scrollbars="none"
-                >
+                android:scrollbars="none">
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -71,9 +89,9 @@
                         android:layout_margin="5dp"
                         android:background="@drawable/shape2"
                         android:padding="10dp"
-                        app:riv_corner_radius="20dp"
                         android:scaleType="fitXY"
-                        android:src="@drawable/a" />
+                        android:src="@drawable/a"
+                        app:riv_corner_radius="20dp" />
 
                     <com.makeramen.roundedimageview.RoundedImageView
                         android:layout_width="300dp"
@@ -82,9 +100,9 @@
                         android:layout_margin="5dp"
                         android:background="@drawable/shape2"
                         android:padding="10dp"
-                        app:riv_corner_radius="20dp"
                         android:scaleType="fitXY"
-                        android:src="@drawable/b" />
+                        android:src="@drawable/b"
+                        app:riv_corner_radius="20dp" />
 
                     <com.makeramen.roundedimageview.RoundedImageView
                         android:layout_width="300dp"
@@ -93,9 +111,9 @@
                         android:layout_margin="5dp"
                         android:background="@drawable/shape2"
                         android:padding="10dp"
-                        app:riv_corner_radius="20dp"
                         android:scaleType="fitXY"
-                        android:src="@drawable/c" />
+                        android:src="@drawable/c"
+                        app:riv_corner_radius="20dp" />
                 </LinearLayout>
             </HorizontalScrollView>
 
@@ -107,8 +125,7 @@
                 android:text="   Shop By Categories"
                 android:textColor="@color/black"
                 android:textSize="20dp"
-                android:textStyle="bold"
-                />
+                android:textStyle="bold" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recycler1"

@@ -6,8 +6,6 @@ import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,22 +26,29 @@ import com.ranzan.mojopizzaclone.Adapter.HomeModel;
 import com.ranzan.mojopizzaclone.DataActivity;
 import com.ranzan.mojopizzaclone.ImageSlider.ImageSliderAdapter;
 import com.ranzan.mojopizzaclone.ImageSlider.ImageSliderClass;
+import com.ranzan.mojopizzaclone.Location.Api;
 import com.ranzan.mojopizzaclone.Location.AppLocationService;
+import com.ranzan.mojopizzaclone.Location.Network;
+import com.ranzan.mojopizzaclone.Location.ResponseDTO;
 import com.ranzan.mojopizzaclone.R;
 import com.ranzan.mojopizzaclone.communication.OnClickListener;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class Home_Fragment extends Fragment implements OnClickListener {
 
     private ArrayList<HomeModel> imageButtons = new ArrayList<>();
     private List<ImageSliderClass> imageSliderClassList = new ArrayList<>();
     private RecyclerView recyclerView;
-    private TextView currLocation;
     private ViewPager2 viewPager2;
     private AppLocationService appLocationService;
-    private View getLocation;
+    private TextView getLocation;
+    private ResponseDTO locationApi;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -66,10 +71,29 @@ public class Home_Fragment extends Fragment implements OnClickListener {
         if (location != null) {
             double latitude = location.getLatitude();
             double longitude = location.getLongitude();
-            String result = "(" + latitude + ", " + longitude + ")";
-            currLocation.setText(result);
-//            LocationAddress locationAddress = new LocationAddress();
-//            locationAddress.getAddressFromLocation(latitude, longitude, getContext(), new GeocoderHandler());
+//            String result = "(" + latitude + ", " + longitude + ")";
+//            getLocation.setText(result);
+
+            Api api = Network.getInstance().create(Api.class);
+            api.getmodels(latitude, longitude).enqueue(new Callback<ResponseDTO>() {
+                @Override
+                public void onResponse(Call<ResponseDTO> call, Response<ResponseDTO> response) {
+                    if (response.body() != null) {
+                        locationApi=response.body();
+                        String address = locationApi.getResults().get(0).getLocality() + ", " +
+                                locationApi.getResults().get(0).getCity() + ", " +
+                                locationApi.getResults().get(0).getState() + " " +
+                                locationApi.getResults().get(0).getArea() + " " +
+                                locationApi.getResults().get(0).getPincode();
+                        getLocation.setText(address);
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<ResponseDTO> call, Throwable t) {
+
+                }
+            });
 
         }
     }
@@ -135,8 +159,7 @@ public class Home_Fragment extends Fragment implements OnClickListener {
     private void initViews(View view) {
         viewPager2 = view.findViewById(R.id.Slider);
         recyclerView = view.findViewById(R.id.recycler1);
-        currLocation = view.findViewById(R.id.location);
-        getLocation = view.findViewById(R.id.getLocation);
+        getLocation = view.findViewById(R.id.location);
     }
 
     @Override
@@ -146,19 +169,4 @@ public class Home_Fragment extends Fragment implements OnClickListener {
         startActivity(intent);
     }
 
-    private class GeocoderHandler extends Handler {
-        @Override
-        public void handleMessage(Message message) {
-            String locationAddress;
-            switch (message.what) {
-                case 1:
-                    Bundle bundle = message.getData();
-                    locationAddress = bundle.getString("address");
-                    break;
-                default:
-                    locationAddress = null;
-            }
-            currLocation.setText(locationAddress);
-        }
-    }
 }

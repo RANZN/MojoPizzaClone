@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "5169863854",
+    "project_id": "mojopizzaclone",
+    "storage_bucket": "mojopizzaclone.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:5169863854:android:e79d8cb9c55c27471f213f",
+        "android_client_info": {
+          "package_name": "com.ranzan.mojopizzaclone"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "5169863854-tkcrfckqol0rm8r7d8cja8jhvs5pdb6g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDs-URWr7pkptTn7SpafwvQQid-Urz3Nck"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "5169863854-tkcrfckqol0rm8r7d8cja8jhvs5pdb6g.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
