@@ -43,13 +43,16 @@
 
             <androidx.viewpager2.widget.ViewPager2
                 android:id="@+id/Slider"
-                android:paddingStart="50dp"
-                android:paddingEnd="50dp"
-                android:layout_margin="10dp"
-                android:paddingBottom="10dp"
-                android:paddingTop="10dp"
                 android:layout_width="match_parent"
-                android:layout_height="200dp" />
+                android:layout_height="200dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp"
+                android:paddingStart="50dp"
+                android:paddingTop="10dp"
+                android:paddingEnd="50dp"
+                android:paddingBottom="10dp" />
             <com.google.android.material.tabs.TabLayout
                 android:id="@+id/tabLayout"
                 android:layout_width="match_parent"
