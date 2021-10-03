@@ -43,16 +43,29 @@
 
             <androidx.viewpager2.widget.ViewPager2
                 android:id="@+id/Slider"
-                android:paddingStart="30dp"
-                android:paddingEnd="30dp"
+                android:paddingStart="50dp"
+                android:paddingEnd="50dp"
+                android:layout_margin="10dp"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="200dp" />
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tabLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/Slider"
+                android:background="@android:color/transparent"
+                app:tabBackground="@drawable/indicator"
+                app:tabIndicatorHeight="0dp"
+                app:tabGravity="start"
+                />
 
             <HorizontalScrollView
                 android:id="@+id/scroll1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/Slider"
+                android:layout_below="@+id/tabLayout"
                 android:scrollbars="none"
                 >
 
@@ -67,8 +80,6 @@
                         android:layout_below="@+id/scroll1"
                         android:layout_margin="5dp"
                         android:background="@drawable/shape2"
-                        android:padding="10dp"
-                        app:riv_corner_radius="20dp"
                         android:scaleType="fitXY"
                         android:src="@drawable/a" />
 
@@ -78,8 +89,6 @@
                         android:layout_below="@+id/scroll1"
                         android:layout_margin="5dp"
                         android:background="@drawable/shape2"
-                        android:padding="10dp"
-                        app:riv_corner_radius="20dp"
                         android:scaleType="fitXY"
                         android:src="@drawable/b" />
 
@@ -89,8 +98,6 @@
                         android:layout_below="@+id/scroll1"
                         android:layout_margin="5dp"
                         android:background="@drawable/shape2"
-                        android:padding="10dp"
-                        app:riv_corner_radius="20dp"
                         android:scaleType="fitXY"
                         android:src="@drawable/c" />
                 </LinearLayout>
