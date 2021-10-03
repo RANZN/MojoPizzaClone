@@ -40,19 +40,21 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-
-            <androidx.viewpager2.widget.ViewPager2
-                android:id="@+id/Slider"
+            <TextView
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="10dp"
-                android:layout_marginBottom="10dp"
-                android:paddingStart="50dp"
-                android:paddingTop="10dp"
-                android:paddingEnd="50dp"
-                android:paddingBottom="10dp" />
+                android:layout_height="wrap_content"
+                android:id="@+id/tv1"
+                android:text="  Hot &amp;New"
+                android:textColor="@color/black"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                />
+            <androidx.viewpager2.widget.ViewPager2
+                android:layout_below="@id/tv1"
+                android:id="@+id/Slider"
+                android:layout_margin="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="200dp" />
             <com.google.android.material.tabs.TabLayout
                 android:id="@+id/tabLayout"
                 android:layout_width="match_parent"
@@ -64,11 +66,21 @@
                 app:tabGravity="start"
                 />
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/tv2"
+                android:text="  Today's offer"
+                android:textColor="@color/black"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:layout_below="@id/tabLayout"
+                />
             <HorizontalScrollView
                 android:id="@+id/scroll1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/tabLayout"
+                android:layout_below="@+id/tv2"
                 android:scrollbars="none"
                 >
 
@@ -83,8 +95,6 @@
                         android:layout_below="@+id/scroll1"
                         android:layout_margin="5dp"
                         android:background="@drawable/shape2"
-                        android:padding="10dp"
-                        app:riv_corner_radius="20dp"
                         android:scaleType="fitXY"
                         android:src="@drawable/a" />
 
@@ -94,8 +104,6 @@
                         android:layout_below="@+id/scroll1"
                         android:layout_margin="5dp"
                         android:background="@drawable/shape2"
-                        android:padding="10dp"
-                        app:riv_corner_radius="20dp"
                         android:scaleType="fitXY"
                         android:src="@drawable/b" />
 
@@ -105,8 +113,6 @@
                         android:layout_below="@+id/scroll1"
                         android:layout_margin="5dp"
                         android:background="@drawable/shape2"
-                        android:padding="10dp"
-                        app:riv_corner_radius="20dp"
                         android:scaleType="fitXY"
                         android:src="@drawable/c" />
                 </LinearLayout>
