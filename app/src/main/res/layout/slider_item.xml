@@ -6,7 +6,7 @@
     android:id="@+id/image_slider_item"
     android:background="@drawable/shape2"
     android:scaleType="fitXY"
-    android:padding="10dp"
+    android:padding="2dp"
     android:adjustViewBounds="true"
     app:riv_corner_radius="20dp">
 

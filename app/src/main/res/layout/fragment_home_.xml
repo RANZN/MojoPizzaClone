@@ -3,53 +3,32 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".Fragments.Home_Fragment">
 
     <View
         android:id="@+id/view1"
         android:layout_width="match_parent"
         android:layout_height="15dp"
-        android:background="#f49426" />
+        android:background="#f49426"
+        />
 
     <TextView
         android:id="@+id/location"
         android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:layout_below="@id/view1"
+        android:layout_height="45dp"
+        android:layout_marginTop="10dp"
         android:layout_marginStart="5dp"
-        android:layout_marginTop="5dp"
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="10dp"
-        android:background="@drawable/home_shape"
         android:drawableEnd="@drawable/location"
-        android:gravity="center"
-        android:padding="3dp"
         android:paddingEnd="10dp"
-        android:text="Mojo Pizza"
-        android:textColor="#f44c26"
-        android:textSize="18sp"
-        android:textStyle="italic" />
-
-    <!--    <TextView-->
-    <!--        android:id="@+id/view1"-->
-    <!--        android:layout_width="wrap_content"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:layout_marginLeft="10dp"-->
-    <!--        android:drawableRight="@drawable/ic_down"-->
-    <!--        android:text="DELIVER AT"-->
-    <!--        android:textColor="@color/black"-->
-    <!--        android:textSize="14sp"-->
-    <!--        android:textStyle="bold" />-->
-
-    <!--    <TextView-->
-    <!--        android:id="@+id/location"-->
-    <!--        android:layout_width="wrap_content"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:layout_below="@+id/view1"-->
-    <!--        android:layout_marginLeft="12dp"-->
-    <!--        android:text="Mojo Pizza"-->
-    <!--        android:textColor="@color/black"-->
-    <!--        android:textSize="14sp" />-->
+        android:background="@drawable/shape1"
+        android:textStyle="italic"
+        android:text="  Hey Buddy Tell Us Your Location..."
+        android:textColor="#f49426"
+        android:textSize="15dp"
+        android:padding="3dp" />
 
     <ScrollView
         android:layout_width="match_parent"
@@ -64,17 +43,31 @@
 
             <androidx.viewpager2.widget.ViewPager2
                 android:id="@+id/Slider"
+                android:paddingStart="50dp"
+                android:paddingEnd="50dp"
+                android:layout_margin="10dp"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:paddingStart="30dp"
-                android:paddingEnd="30dp" />
+                android:layout_height="200dp" />
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tabLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/Slider"
+                android:background="@android:color/transparent"
+                app:tabBackground="@drawable/indicator"
+                app:tabIndicatorHeight="0dp"
+                app:tabGravity="start"
+                />
 
             <HorizontalScrollView
                 android:id="@+id/scroll1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/Slider"
-                android:scrollbars="none">
+                android:layout_below="@+id/tabLayout"
+                android:scrollbars="none"
+                >
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -84,18 +77,22 @@
                     <com.makeramen.roundedimageview.RoundedImageView
                         android:layout_width="300dp"
                         android:layout_height="200dp"
-                        android:padding="5dp"
                         android:layout_below="@+id/scroll1"
                         android:layout_margin="5dp"
+                        android:background="@drawable/shape2"
+                        android:padding="10dp"
+                        app:riv_corner_radius="20dp"
                         android:scaleType="fitXY"
                         android:src="@drawable/a" />
 
                     <com.makeramen.roundedimageview.RoundedImageView
                         android:layout_width="300dp"
                         android:layout_height="200dp"
-                        android:padding="5dp"
                         android:layout_below="@+id/scroll1"
                         android:layout_margin="5dp"
+                        android:background="@drawable/shape2"
+                        android:padding="10dp"
+                        app:riv_corner_radius="20dp"
                         android:scaleType="fitXY"
                         android:src="@drawable/b" />
 
@@ -103,9 +100,10 @@
                         android:layout_width="300dp"
                         android:layout_height="200dp"
                         android:layout_below="@+id/scroll1"
-                        android:padding="5dp"
-
                         android:layout_margin="5dp"
+                        android:background="@drawable/shape2"
+                        android:padding="10dp"
+                        app:riv_corner_radius="20dp"
                         android:scaleType="fitXY"
                         android:src="@drawable/c" />
                 </LinearLayout>
@@ -119,7 +117,8 @@
                 android:text="   Shop By Categories"
                 android:textColor="@color/black"
                 android:textSize="20dp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recycler1"

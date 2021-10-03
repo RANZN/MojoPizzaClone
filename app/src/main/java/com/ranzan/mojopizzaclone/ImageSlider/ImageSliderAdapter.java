@@ -34,6 +34,13 @@ public class ImageSliderAdapter extends RecyclerView.Adapter<ImageSliderAdapter.
         ImageSliderClass imageSliderClass= sliderItem.get(position);
         holder.setimage(imageSliderClass);
     }
+    private Runnable runnable = new Runnable() {
+        @Override
+        public void run() {
+            sliderItem.addAll(sliderItem);
+            notifyDataSetChanged();
+        }
+    };
 
     @Override
     public int getItemCount() {
