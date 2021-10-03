@@ -8,7 +8,6 @@ import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -19,14 +18,12 @@ import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.viewpager2.widget.CompositePageTransformer;
-import androidx.viewpager2.widget.MarginPageTransformer;
 import androidx.viewpager2.widget.ViewPager2;
 
-import com.ranzan.mojopizzaclone.Adapter.HomeAdapter;
-import com.ranzan.mojopizzaclone.Adapter.HomeModel;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
+import com.ranzan.mojopizzaclone.Adapter.HomeAdapter;
+import com.ranzan.mojopizzaclone.Adapter.HomeModel;
 import com.ranzan.mojopizzaclone.DataActivity;
 import com.ranzan.mojopizzaclone.ImageSlider.ImageSliderAdapter;
 import com.ranzan.mojopizzaclone.ImageSlider.ImageSliderClass;
@@ -35,7 +32,7 @@ import com.ranzan.mojopizzaclone.Location.AppLocationService;
 import com.ranzan.mojopizzaclone.Location.Network;
 import com.ranzan.mojopizzaclone.Location.ResponseDTO;
 import com.ranzan.mojopizzaclone.R;
-import com.ranzan.mojopizzaclone.model_adapter;
+import com.ranzan.mojopizzaclone.communication.OnClickListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,7 +41,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class Home_Fragment extends Fragment implements TabLayout.OnTabSelectedListener {
+public class Home_Fragment extends Fragment implements TabLayout.OnTabSelectedListener , OnClickListener {
 
     private ArrayList<HomeModel> imageButtons = new ArrayList<>();
     private List<ImageSliderClass> imageSliderClassList = new ArrayList<>();
@@ -142,7 +139,6 @@ public class Home_Fragment extends Fragment implements TabLayout.OnTabSelectedLi
                 slideHandler.postDelayed(sliderRunnable, 2000); // slide duration 2 seconds
             }
         });
-        viewPager2.setPageTransformer(compositePageTransformer);
         getLocation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
