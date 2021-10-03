@@ -18,6 +18,8 @@ import androidx.viewpager2.widget.CompositePageTransformer;
 import androidx.viewpager2.widget.MarginPageTransformer;
 import androidx.viewpager2.widget.ViewPager2;
 
+import com.google.android.material.tabs.TabLayout;
+import com.google.android.material.tabs.TabLayoutMediator;
 import com.ranzan.mojopizzaclone.DataActivity;
 import com.ranzan.mojopizzaclone.ImageSlider.ImageSliderAdapter;
 import com.ranzan.mojopizzaclone.ImageSlider.ImageSliderClass;
@@ -28,13 +30,14 @@ import com.ranzan.mojopizzaclone.model_adapter;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Home_Fragment extends Fragment {
+public class Home_Fragment extends Fragment implements TabLayout.OnTabSelectedListener{
     private ViewPager2 viewPager2;
     private ArrayList<Image_model> imageButtons = new ArrayList<>();
     private List<ImageSliderClass> imageSliderClassList=new ArrayList<>();
     private RecyclerView recyclerView;
     private TextView textView;
     private Handler slideHandler=new Handler();
+    private TabLayout tabLayout;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -54,18 +57,29 @@ public class Home_Fragment extends Fragment {
         viewPager2.setOffscreenPageLimit(3);
         viewPager2.getChildAt(0).setOverScrollMode(RecyclerView.OVER_SCROLL_NEVER);
 
-        CompositePageTransformer compositePageTransformer=new CompositePageTransformer();
-        compositePageTransformer.addTransformer(new MarginPageTransformer(40));
-        compositePageTransformer.addTransformer(new ViewPager2.PageTransformer() {
+        tabLayout.addOnTabSelectedListener(this);
+
+        new TabLayoutMediator(tabLayout, viewPager2, new TabLayoutMediator.TabConfigurationStrategy() {
             @Override
-            public void transformPage(@NonNull View page, float position) {
+            public void onConfigureTab(@NonNull TabLayout.Tab tab, int position) {
 
-                page.setTranslationX(-position*page.getWidth());
+            }
+        }).attach();
 
-                page.setAlpha(1-Math.abs(position));
+        Runnable sliderRunnable = new Runnable() {
+            @Override
+            public void run() {
+                viewPager2.setCurrentItem(viewPager2.getCurrentItem() + 1);
+            }
+        };
+        viewPager2.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
+            @Override
+            public void onPageSelected(int position) {
+                super.onPageSelected(position);
+                slideHandler.removeCallbacks(sliderRunnable);
+                slideHandler.postDelayed(sliderRunnable, 2000); // slide duration 2 seconds
             }
         });
-        viewPager2.setPageTransformer(compositePageTransformer);
     }
 
 
@@ -80,9 +94,12 @@ public class Home_Fragment extends Fragment {
         imageButtons.add(new Image_model(R.drawable.k));
         imageButtons.add(new Image_model(R.drawable.l));
         imageButtons.add(new Image_model(R.drawable.m));
-        imageSliderClassList.add(new ImageSliderClass(R.drawable.a));
-        imageSliderClassList.add(new ImageSliderClass(R.drawable.b));
-        imageSliderClassList.add(new ImageSliderClass(R.drawable.c));
+        imageSliderClassList.add(new ImageSliderClass(R.drawable.garlic_2));
+        imageSliderClassList.add(new ImageSliderClass(R.drawable.garlic_3));
+        imageSliderClassList.add(new ImageSliderClass(R.drawable.half_3));
+        imageSliderClassList.add(new ImageSliderClass(R.drawable.half_6));
+        imageSliderClassList.add(new ImageSliderClass(R.drawable.desserts_4));
+        imageSliderClassList.add(new ImageSliderClass(R.drawable.big_2));
     }
 
     private void setRecyclerView() {
@@ -96,5 +113,21 @@ public class Home_Fragment extends Fragment {
         viewPager2=view.findViewById(R.id.Slider);
         recyclerView = view.findViewById(R.id.recycler1);
         textView=view.findViewById(R.id.tvCategory);
+        tabLayout=view.findViewById(R.id.tabLayout);
+    }
+
+    @Override
+    public void onTabSelected(TabLayout.Tab tab) {
+
+    }
+
+    @Override
+    public void onTabUnselected(TabLayout.Tab tab) {
+
+    }
+
+    @Override
+    public void onTabReselected(TabLayout.Tab tab) {
+
     }
 }
