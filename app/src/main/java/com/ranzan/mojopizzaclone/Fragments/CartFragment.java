@@ -2,6 +2,7 @@ package com.ranzan.mojopizzaclone.Fragments;
 
 import static android.content.Context.MODE_PRIVATE;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -9,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -16,11 +18,15 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.ranzan.mojopizzaclone.Adapter.All_Model;
 import com.ranzan.mojopizzaclone.Adapter.CartAdapter;
 import com.ranzan.mojopizzaclone.Adapter.CartModel;
+import com.ranzan.mojopizzaclone.Login.LoginActivity;
+import com.ranzan.mojopizzaclone.OrderActivity;
 import com.ranzan.mojopizzaclone.R;
 import com.ranzan.mojopizzaclone.communication.ItemClickListener;
 
@@ -35,10 +41,12 @@ public class CartFragment extends Fragment implements ItemClickListener {
     private TextView tvTotal;
     private Button btn;
     private int total = 0;
+    private FirebaseAuth mAuth;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        mAuth = FirebaseAuth.getInstance();
         return inflater.inflate(R.layout.fragment_cart, container, false);
     }
 
@@ -62,6 +70,21 @@ public class CartFragment extends Fragment implements ItemClickListener {
         loadData();
         cartAdapter.updateUI(cartModelsList);
         setTotalAmount();
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (currentUser != null) {
+                    Intent intent = new Intent(getContext(), OrderActivity.class);
+                    startActivity(intent);
+                } else {
+                    Toast.makeText(getContext(), "You need to login first", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(getContext(), LoginActivity.class);
+                    startActivity(intent);
+                }
+            }
+        });
+
     }
 
     void setTotalAmount() {

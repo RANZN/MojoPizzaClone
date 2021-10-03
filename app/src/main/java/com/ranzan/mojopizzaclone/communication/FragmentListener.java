@@ -4,4 +4,5 @@ import android.os.Bundle;
 
 public interface FragmentListener {
     void fragmentListener(Bundle bundle);
+
 }

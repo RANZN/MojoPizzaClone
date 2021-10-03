@@ -3,7 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".Fragments.Home_Fragment">
 
     <View
@@ -85,35 +84,30 @@
                     <com.makeramen.roundedimageview.RoundedImageView
                         android:layout_width="300dp"
                         android:layout_height="200dp"
+                        android:padding="5dp"
                         android:layout_below="@+id/scroll1"
                         android:layout_margin="5dp"
-                        android:background="@drawable/shape2"
-                        android:padding="10dp"
                         android:scaleType="fitXY"
-                        android:src="@drawable/a"
-                        app:riv_corner_radius="20dp" />
+                        android:src="@drawable/a" />
+
+                    <com.makeramen.roundedimageview.RoundedImageView
+                        android:layout_width="300dp"
+                        android:layout_height="200dp"
+                        android:padding="5dp"
+                        android:layout_below="@+id/scroll1"
+                        android:layout_margin="5dp"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/b" />
 
                     <com.makeramen.roundedimageview.RoundedImageView
                         android:layout_width="300dp"
                         android:layout_height="200dp"
                         android:layout_below="@+id/scroll1"
-                        android:layout_margin="5dp"
-                        android:background="@drawable/shape2"
-                        android:padding="10dp"
-                        android:scaleType="fitXY"
-                        android:src="@drawable/b"
-                        app:riv_corner_radius="20dp" />
+                        android:padding="5dp"
 
-                    <com.makeramen.roundedimageview.RoundedImageView
-                        android:layout_width="300dp"
-                        android:layout_height="200dp"
-                        android:layout_below="@+id/scroll1"
                         android:layout_margin="5dp"
-                        android:background="@drawable/shape2"
-                        android:padding="10dp"
                         android:scaleType="fitXY"
-                        android:src="@drawable/c"
-                        app:riv_corner_radius="20dp" />
+                        android:src="@drawable/c" />
                 </LinearLayout>
             </HorizontalScrollView>
 

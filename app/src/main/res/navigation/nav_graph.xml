@@ -3,19 +3,26 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/all_in_oneFragment">
+    app:startDestination="@id/accountFragment">
     <fragment
-        android:id="@+id/all_in_oneFragment"
-        android:name="com.ranzan.mojopizzaclone.Menu.All_in_oneFragment"
-        android:label="fragment_all_in_one"
-        tools:layout="@layout/fragment_all_in_one" >
+        android:id="@+id/accountFragment"
+        android:name="com.ranzan.mojopizzaclone.Fragments.AccountFragment"
+        android:label="fragment_account"
+        tools:layout="@layout/fragment_account" >
         <action
-            android:id="@+id/action_all_in_oneFragment_to_detil_ItemFragment"
-            app:destination="@id/detil_ItemFragment" />
+            android:id="@+id/action_accountFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
     </fragment>
     <fragment
-        android:id="@+id/detil_ItemFragment"
-        android:name="com.ranzan.mojopizzaclone.Menu.Detil_ItemFragment"
-        android:label="fragment_detil__item"
-        tools:layout="@layout/fragment_detil__item" />
+        android:id="@+id/loginFragment"
+        android:name="com.ranzan.mojopizzaclone.Login.LoginFragment"
+        android:label="LoginFragment" >
+        <action
+            android:id="@+id/action_loginFragment_to_signUpFragment"
+            app:destination="@id/signUpFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/signUpFragment"
+        android:name="com.ranzan.mojopizzaclone.Login.SignUpFragment"
+        android:label="SignUpFragment" />
 </navigation>

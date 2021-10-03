@@ -13,7 +13,6 @@ import com.ranzan.mojopizzaclone.Menu.Detil_ItemFragment;
 import com.ranzan.mojopizzaclone.communication.FragmentListener;
 
 public class DataActivity extends AppCompatActivity implements FragmentListener {
-    private FragmentManager fragmentManager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,16 +24,13 @@ public class DataActivity extends AppCompatActivity implements FragmentListener 
         All_in_oneFragment fragment = new All_in_oneFragment();
         fragment.setFragmentListener(this);
         fragment.setArguments(bundle);
-        fragmentManager=getSupportFragmentManager();
-        fragmentManager.beginTransaction().add(R.id.contaner,fragment, String.valueOf(bundle)).commit();
+
     }
 
 
     @Override
     public void fragmentListener(Bundle bundle) {
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        Detil_ItemFragment fragment=new Detil_ItemFragment();
-        fragment.setArguments(bundle);
-        fragmentTransaction.add(R.id.contaner,fragment).addToBackStack("").commit();
+
     }
+
 }
