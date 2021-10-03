@@ -41,7 +41,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class Home_Fragment extends Fragment implements TabLayout.OnTabSelectedListener , OnClickListener {
+public class Home_Fragment extends Fragment implements TabLayout.OnTabSelectedListener , OnClickListener     {
 
     private ArrayList<HomeModel> imageButtons = new ArrayList<>();
     private List<ImageSliderClass> imageSliderClassList = new ArrayList<>();
