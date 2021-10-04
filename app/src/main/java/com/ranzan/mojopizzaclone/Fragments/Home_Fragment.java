@@ -50,7 +50,6 @@ public class Home_Fragment extends Fragment implements TabLayout.OnTabSelectedLi
     private AppLocationService appLocationService;
     private TextView getLocation;
     private ResponseDTO locationApi;
-
     private TextView textView;
     private Handler slideHandler=new Handler();
     private TabLayout tabLayout;

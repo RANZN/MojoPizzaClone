@@ -20,7 +20,6 @@ import com.google.gson.Gson;
 import com.ranzan.mojopizzaclone.Adapter.All_Model;
 import com.ranzan.mojopizzaclone.Adapter.CartModel;
 import com.ranzan.mojopizzaclone.R;
-import com.ranzan.mojopizzaclone.communication.FragmentListener;
 
 import java.util.ArrayList;
 
@@ -60,7 +59,8 @@ public class Detil_ItemFragment extends Fragment {
         mBtnAddToCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                cartList.add(new CartModel(all_model,1));
+                cartList.add(new CartModel(all_model, 1));
+                mBtnAddToCart.setText("ADDED TO CART");
                 addDataToPreference();
                 Toast.makeText(getContext(), "Added to Cart", Toast.LENGTH_SHORT).show();
             }

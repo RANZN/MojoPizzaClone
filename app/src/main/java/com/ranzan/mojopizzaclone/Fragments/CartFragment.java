@@ -112,10 +112,12 @@ public class CartFragment extends Fragment implements ItemClickListener {
 
     @Override
     public void onItemClick(int position, All_Model all_model) {
+        total -= Integer.parseInt(cartModelsList.get(position).getAll_model().getPrice().substring(1));
+        tvTotal.setText("$ " + total);
         cartModelsList.remove(position);
         cartAdapter.updateUI(cartModelsList);
-        setTotalAmount();
         addDataToPreference();
+
     }
 
 

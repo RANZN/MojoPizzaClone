@@ -8,7 +8,7 @@ import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 public interface Api {
-    @GET("advancedmaps/v1/9031b028a3859cfb5e8f1bc628287100/rev_geocode")
+    @GET("advancedmaps/v1/30072769dcb1994942a02091b4d4b06e/rev_geocode")
     Call<ResponseDTO> getmodels(@Query("lat") double lat,
                                       @Query("lng")double lang);
 
