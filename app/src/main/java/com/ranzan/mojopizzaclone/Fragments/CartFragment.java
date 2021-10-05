@@ -91,7 +91,8 @@ public class CartFragment extends Fragment implements ItemClickListener {
         for (CartModel i : cartModelsList) {
             String s = i.getAll_model().getPrice();
             int n = Integer.parseInt(s.substring(1));
-            total += n;
+            int q = i.getQuantity();
+            total += n * q;
         }
         tvTotal.setText("$ " + total);
     }
@@ -117,9 +118,7 @@ public class CartFragment extends Fragment implements ItemClickListener {
         cartModelsList.remove(position);
         cartAdapter.updateUI(cartModelsList);
         addDataToPreference();
-
     }
-
 
     private void addDataToPreference() {
         SharedPreferences sharedPreferences = getContext().getSharedPreferences("shared preferences", MODE_PRIVATE);

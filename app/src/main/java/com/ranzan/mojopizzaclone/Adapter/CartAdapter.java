@@ -82,7 +82,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
                     @Override
                     public void onClick(View view) {
                         if (cartModel.getQuantity() < 10) {
-                            cartModel.setQuantity(cartModel.getQuantity()+1    );
+                            cartModel.setQuantity(cartModel.getQuantity() + 1);
                             quantity.setText(cartModel.getQuantity() + "");
                         } else
                             Toast.makeText(ImagePoster.getContext(), "Max", Toast.LENGTH_SHORT).show();
