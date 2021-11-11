@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
         bottomNavigation.setOnClickMenuListener(new MeowBottomNavigation.ClickListener() {
             @Override
             public void onClickItem(MeowBottomNavigation.Model item) {
-
+                bottomNavigation.show(item.getId(), true);
             }
         });
     }
