@@ -3,10 +3,13 @@ package com.ranzan.mojopizzaclone.Fragments;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.location.Address;
+import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,19 +30,15 @@ import com.ranzan.mojopizzaclone.Adapter.HomeModel;
 import com.ranzan.mojopizzaclone.DataActivity;
 import com.ranzan.mojopizzaclone.ImageSlider.ImageSliderAdapter;
 import com.ranzan.mojopizzaclone.ImageSlider.ImageSliderClass;
-import com.ranzan.mojopizzaclone.Location.Api;
 import com.ranzan.mojopizzaclone.Location.AppLocationService;
-import com.ranzan.mojopizzaclone.Location.Network;
 import com.ranzan.mojopizzaclone.Location.ResponseDTO;
 import com.ranzan.mojopizzaclone.R;
 import com.ranzan.mojopizzaclone.communication.OnClickListener;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
+import java.util.Locale;
 
 public class Home_Fragment extends Fragment implements TabLayout.OnTabSelectedListener , OnClickListener     {
 
@@ -51,24 +50,28 @@ public class Home_Fragment extends Fragment implements TabLayout.OnTabSelectedLi
     private TextView getLocation;
     private ResponseDTO locationApi;
     private TextView textView;
-    private Handler slideHandler=new Handler();
+    private Handler slideHandler = new Handler();
     private TabLayout tabLayout;
+
+    Geocoder geocoder;
+    List<Address> addresses;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        geocoder = new Geocoder(getContext(), Locale.getDefault());
         appLocationService = new AppLocationService(getContext());
         return inflater.inflate(R.layout.fragment_home_, container, false);
     }
 
-    private void reqPermission() {
+    private void reqPermission() throws IOException {
         ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
         boolean isPermissionGranted = ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED;
         if (isPermissionGranted)
             getLocation();
     }
 
-    private void getLocation() {
+    private void getLocation() throws IOException {
         Location location = appLocationService
                 .getLocation(LocationManager.GPS_PROVIDER);
         if (location != null) {
@@ -77,27 +80,15 @@ public class Home_Fragment extends Fragment implements TabLayout.OnTabSelectedLi
 //            String result = "(" + latitude + ", " + longitude + ")";
 //            getLocation.setText(result);
 
-            Api api = Network.getInstance().create(Api.class);
-            api.getmodels(latitude, longitude).enqueue(new Callback<ResponseDTO>() {
-                @Override
-                public void onResponse(Call<ResponseDTO> call, Response<ResponseDTO> response) {
-                    if (response.body() != null) {
-                        locationApi=response.body();
-                        String address = locationApi.getResults().get(0).getLocality() + ", " +
-                                locationApi.getResults().get(0).getCity() + ", " +
-                                locationApi.getResults().get(0).getState() + " " +
-                                locationApi.getResults().get(0).getArea() + " " +
-                                locationApi.getResults().get(0).getPincode();
-                        getLocation.setText(address);
-                    }
-                }
+            addresses = geocoder.getFromLocation(latitude, longitude, 1); // Here 1 represent max location result to returned, by documents it recommended 1 to 5
 
-                @Override
-                public void onFailure(Call<ResponseDTO> call, Throwable t) {
-
-                }
-            });
-
+            String address = addresses.get(0).getAddressLine(0); // If any additional address line present than only, check with max available address lines by getMaxAddressLineIndex()
+            String city = addresses.get(0).getLocality();
+            String state = addresses.get(0).getAdminArea();
+            String country = addresses.get(0).getCountryName();
+            String postalCode = addresses.get(0).getPostalCode();
+            String knownName = addresses.get(0).getFeatureName(); // Only if available else return NULL
+            Log.d("locationRanzn",address);
         }
     }
 
@@ -105,11 +96,15 @@ public class Home_Fragment extends Fragment implements TabLayout.OnTabSelectedLi
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         initViews(view);
-        reqPermission();
+        try {
+            reqPermission();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         buildList();
         setRecyclerView();
-
-        viewPager2.setAdapter(new ImageSliderAdapter(imageSliderClassList,viewPager2));
+        geocoder = new Geocoder(getContext(), Locale.getDefault());
+        viewPager2.setAdapter(new ImageSliderAdapter(imageSliderClassList, viewPager2));
         viewPager2.setClipToPadding(false);
         viewPager2.setClipChildren(false);
         viewPager2.setOffscreenPageLimit(3);
@@ -141,7 +136,11 @@ public class Home_Fragment extends Fragment implements TabLayout.OnTabSelectedLi
         getLocation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                reqPermission();
+                try {
+                    reqPermission();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         });
     }

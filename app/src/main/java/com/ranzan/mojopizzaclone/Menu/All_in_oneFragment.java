@@ -249,5 +249,6 @@ public class All_in_oneFragment extends Fragment implements ItemClickListener {
         Bundle bundle = new Bundle();
         bundle.putSerializable("data", all_model);
         fragmentListener.fragmentListener(bundle);
+
     }
 }

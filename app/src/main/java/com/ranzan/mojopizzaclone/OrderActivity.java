@@ -48,5 +48,10 @@ public class OrderActivity extends AppCompatActivity {
         customAddress = findViewById(R.id.customLocation);
         phoneNumber = findViewById(R.id.orderPhoneNumber);
         orderBtn = findViewById(R.id.orderNow);
+
+        Intent intent = new Intent(OrderActivity.this, MainActivity.class);
+        Bundle bundle = new Bundle();
+        bundle.putInt("a", 1);
+        intent.putExtra("data", bundle);
     }
 }

@@ -46,6 +46,7 @@ public class AccountFragment extends Fragment {
             }
         });
 
+
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if (currentUser != null) {
             accountName.setText(currentUser.getDisplayName());

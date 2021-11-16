@@ -16,6 +16,7 @@ import androidx.fragment.app.Fragment;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
@@ -26,15 +27,15 @@ import com.ranzan.mojopizzaclone.R;
 public class SignUpFragment extends Fragment {
     private EditText name, email, password;
     private Button continueBtn;
-    private FirebaseAuth mAuth;
+    private FirebaseAuth mAuth = FirebaseAuth.getInstance();
     private ProgressBar progressBar;
-    private DatabaseReference myRef;
+    private FirebaseDatabase database = FirebaseDatabase.getInstance();
+    private DatabaseReference myRef = database.getReference("users");
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        mAuth = FirebaseAuth.getInstance();
-        myRef = FirebaseDatabase.getInstance().getReference("users");
         return inflater.inflate(R.layout.fragment_sign_up, container, false);
     }
 
@@ -68,7 +69,8 @@ public class SignUpFragment extends Fragment {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (task.isSuccessful()) {
-                        saveDataToFireBase();
+                        //saveDataToFireBase();
+                        myRef.setValue(n);
                         Toast.makeText(getContext(), "SignUp Successful", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(getContext(), MainActivity.class);
                         startActivity(intent);
