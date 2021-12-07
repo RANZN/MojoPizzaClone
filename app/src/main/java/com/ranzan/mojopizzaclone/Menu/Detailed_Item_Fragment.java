@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
 import com.google.gson.Gson;
@@ -24,8 +25,10 @@ import com.ranzan.mojopizzaclone.R;
 import java.util.ArrayList;
 
 
-public class Detil_ItemFragment extends Fragment {
-    private ImageView mTv_Show_Image_Poster, closeBtn;
+public class Detailed_Item_Fragment extends Fragment {
+    private ImageView mTv_Show_Image_Poster;
+    private View closeBtn;
+    private CardView cardView;
     private TextView mTv_Show_Name;
     private TextView mTv_Show_Detail;
     private TextView mTv_Show_Price;
@@ -81,13 +84,20 @@ public class Detil_ItemFragment extends Fragment {
         mTv_Show_Image_Poster= view.findViewById(R.id.Trans_Poster_Image);
         mTv_Show_Detail= view.findViewById(R.id.Trans_Tv_Show_Detail);
         mTv_Show_Price = view.findViewById(R.id.Trans_Tv_Show_Prize);
-        mBtnAddToCart= view.findViewById(R.id.Trans_Btn_addToCart);
-        mBtnMoreInfo= view.findViewById(R.id.Btnmoreinfo);
-        closeBtn=view.findViewById(R.id.closeBtn);
+        mBtnAddToCart = view.findViewById(R.id.Trans_Btn_addToCart);
+        mBtnMoreInfo = view.findViewById(R.id.Btnmoreinfo);
+        closeBtn = view.findViewById(R.id.closeBtn);
         closeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getActivity().getFragmentManager().popBackStack();
+                getActivity().onBackPressed();
+            }
+        });
+        cardView = view.findViewById(R.id.cardView);
+        cardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
             }
         });
     }

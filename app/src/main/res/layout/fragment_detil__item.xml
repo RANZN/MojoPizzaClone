@@ -5,10 +5,14 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="#D0000000"
-    tools:context=".Menu.Detil_ItemFragment">
+    tools:context=".Menu.Detailed_Item_Fragment">
+
+    <View
+        android:id="@+id/closeBtn"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
     <ImageView
-        android:id="@+id/closeBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="50dp"
@@ -17,6 +21,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
         android:layout_height="wrap_content"
         app:cardCornerRadius="20dp"
         android:layout_margin="20dp"
