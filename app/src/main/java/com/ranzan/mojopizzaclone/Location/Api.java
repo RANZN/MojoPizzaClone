@@ -11,5 +11,4 @@ public interface Api {
     @GET("advancedmaps/v1/30072769dcb1994942a02091b4d4b06e/rev_geocode")
     Call<ResponseDTO> getmodels(@Query("lat") double lat,
                                       @Query("lng")double lang);
-
 }

@@ -28,13 +28,21 @@ public class SignUpFragment extends Fragment {
     private Button continueBtn;
     private FirebaseAuth mAuth;
     private ProgressBar progressBar;
+    FirebaseDatabase database;
     private DatabaseReference myRef;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         mAuth = FirebaseAuth.getInstance();
-        myRef = FirebaseDatabase.getInstance().getReference("users");
+        database = FirebaseDatabase.getInstance();
+        myRef = database.getReference("users");
+        myRef.setValue("Hello, World!").addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                Toast.makeText(getContext(), "done", Toast.LENGTH_SHORT).show();
+            }
+        });
         return inflater.inflate(R.layout.fragment_sign_up, container, false);
     }
 
@@ -50,13 +58,12 @@ public class SignUpFragment extends Fragment {
                 signUp();
             }
         });
-
     }
 
     private void saveDataToFireBase() {
-        if (mAuth.getCurrentUser().getUid() != null) {
-            myRef.child(mAuth.getCurrentUser().getUid()).setValue(name.getText().toString());
-        }
+//        if (mAuth.getCurrentUser().getUid() != null) {
+        myRef.child(mAuth.getCurrentUser().getUid()).setValue(name.getText().toString());
+//        }
     }
 
     private void signUp() {
@@ -85,7 +92,6 @@ public class SignUpFragment extends Fragment {
             continueBtn.setVisibility(View.VISIBLE);
         }
     }
-
 
     private void initViews(View v) {
         name = v.findViewById(R.id.signupName);

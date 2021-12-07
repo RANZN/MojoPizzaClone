@@ -1,66 +1,50 @@
 package com.ranzan.mojopizzaclone;
 
 import android.os.Bundle;
+import android.view.MenuItem;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 
-import com.etebarian.meowbottomnavigation.MeowBottomNavigation;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.ranzan.mojopizzaclone.Fragments.AccountFragment;
 import com.ranzan.mojopizzaclone.Fragments.CartFragment;
 import com.ranzan.mojopizzaclone.Fragments.ClubFragment;
 import com.ranzan.mojopizzaclone.Fragments.FreeFragment;
 import com.ranzan.mojopizzaclone.Fragments.Home_Fragment;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
 
-    private MeowBottomNavigation bottomNavigation;
-    private FragmentManager fragmentManager;
+    BottomNavigationView bottomNavigation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         bottomNavigation = findViewById(R.id.bottom_navigation);
+        bottomNavigation.setOnNavigationItemSelectedListener(this);
+        getSupportFragmentManager().beginTransaction().add(R.id.frame, new Home_Fragment()).commit();
+    }
 
-        bottomNavigation.add(new MeowBottomNavigation.Model(1,R.drawable.home));
-        bottomNavigation.add(new MeowBottomNavigation.Model(2,R.drawable.group));
-        bottomNavigation.add(new MeowBottomNavigation.Model(3,R.drawable.cart));
-        bottomNavigation.add(new MeowBottomNavigation.Model(4,R.drawable.offer));
-        bottomNavigation.add(new MeowBottomNavigation.Model(5,R.drawable.account));
-
-        bottomNavigation.setOnShowListener(new MeowBottomNavigation.ShowListener() {
-            @Override
-            public void onShowItem(MeowBottomNavigation.Model item) {
-                Fragment fragment=null;
-                switch (item.getId()) {
-                    case 1:
-                        fragment = new Home_Fragment();
-                        break;
-                    case 2:
-                        fragment = new ClubFragment();
-                        break;
-                    case 3:
-                        fragment = new CartFragment();
-                        break;
-                    case 4:
-                        fragment = new FreeFragment();
-                        break;
-                    case 5:
-                        fragment = new AccountFragment();
-                        break;
-                }
-                getSupportFragmentManager().beginTransaction().replace(R.id.frame, fragment).commit();
-            }
-        });
-        fragmentManager = getSupportFragmentManager();
-        bottomNavigation.show(1, true);
-        bottomNavigation.setOnClickMenuListener(new MeowBottomNavigation.ClickListener() {
-            @Override
-            public void onClickItem(MeowBottomNavigation.Model item) {
-
-            }
-        });
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.home:
+                getSupportFragmentManager().beginTransaction().replace(R.id.frame, new Home_Fragment()).commit();
+                return true;
+            case R.id.search:
+                getSupportFragmentManager().beginTransaction().replace(R.id.frame, new ClubFragment()).commit();
+                return true;
+            case R.id.cart:
+                getSupportFragmentManager().beginTransaction().replace(R.id.frame, new CartFragment()).commit();
+                return true;
+            case R.id.message:
+                getSupportFragmentManager().beginTransaction().replace(R.id.frame, new FreeFragment()).commit();
+                return true;
+            case R.id.profile:
+                getSupportFragmentManager().beginTransaction().replace(R.id.frame, new AccountFragment()).commit();
+                return true;
+        }
+        return false;
     }
 }
