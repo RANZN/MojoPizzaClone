@@ -3,6 +3,8 @@ package com.ranzan.mojopizzaclone.Fragments;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.location.Address;
+import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.Bundle;
@@ -27,19 +29,14 @@ import com.ranzan.mojopizzaclone.Adapter.HomeModel;
 import com.ranzan.mojopizzaclone.DataActivity;
 import com.ranzan.mojopizzaclone.ImageSlider.ImageSliderAdapter;
 import com.ranzan.mojopizzaclone.ImageSlider.ImageSliderClass;
-import com.ranzan.mojopizzaclone.Location.Api;
 import com.ranzan.mojopizzaclone.Location.AppLocationService;
-import com.ranzan.mojopizzaclone.Location.Network;
-import com.ranzan.mojopizzaclone.Location.ResponseDTO;
 import com.ranzan.mojopizzaclone.R;
 import com.ranzan.mojopizzaclone.communication.OnClickListener;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
+import java.util.Locale;
 
 public class Home_Fragment extends Fragment implements TabLayout.OnTabSelectedListener , OnClickListener     {
 
@@ -49,15 +46,17 @@ public class Home_Fragment extends Fragment implements TabLayout.OnTabSelectedLi
     private ViewPager2 viewPager2;
     private AppLocationService appLocationService;
     private TextView getLocation;
-    private ResponseDTO locationApi;
     private TextView textView;
-    private Handler slideHandler=new Handler();
+    private Handler slideHandler = new Handler();
     private TabLayout tabLayout;
+    private String address;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         appLocationService = new AppLocationService(getContext());
+        reqPermission();
         return inflater.inflate(R.layout.fragment_home_, container, false);
     }
 
@@ -68,6 +67,7 @@ public class Home_Fragment extends Fragment implements TabLayout.OnTabSelectedLi
             getLocation();
     }
 
+
     private void getLocation() {
         Location location = appLocationService
                 .getLocation(LocationManager.GPS_PROVIDER);
@@ -76,28 +76,17 @@ public class Home_Fragment extends Fragment implements TabLayout.OnTabSelectedLi
             double longitude = location.getLongitude();
 //            String result = "(" + latitude + ", " + longitude + ")";
 //            getLocation.setText(result);
-
-            Api api = Network.getInstance().create(Api.class);
-            api.getmodels(latitude, longitude).enqueue(new Callback<ResponseDTO>() {
-                @Override
-                public void onResponse(Call<ResponseDTO> call, Response<ResponseDTO> response) {
-                    if (response.body() != null) {
-                        locationApi=response.body();
-                        String address = locationApi.getResults().get(0).getLocality() + ", " +
-                                locationApi.getResults().get(0).getCity() + ", " +
-                                locationApi.getResults().get(0).getState() + " " +
-                                locationApi.getResults().get(0).getArea() + " " +
-                                locationApi.getResults().get(0).getPincode();
-                        getLocation.setText(address);
-                    }
-                }
-
-                @Override
-                public void onFailure(Call<ResponseDTO> call, Throwable t) {
-
-                }
-            });
-
+            Geocoder geocoder = new Geocoder(getContext(), Locale.getDefault());
+            try {
+                List<Address> addressList = geocoder.getFromLocation(latitude, longitude, 1);
+                String addressLine = addressList.get(0).getSubLocality();
+                String addressCity = addressList.get(0).getLocality();
+                String addressState = addressList.get(0).getAdminArea();
+                String pinCode = addressList.get(0).getPostalCode();
+                address = addressLine + ", " + addressCity + ", " + addressState + ", " + pinCode;
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -105,10 +94,9 @@ public class Home_Fragment extends Fragment implements TabLayout.OnTabSelectedLi
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         initViews(view);
-        reqPermission();
         buildList();
         setRecyclerView();
-
+        getLocation.setText(address);
         viewPager2.setAdapter(new ImageSliderAdapter(imageSliderClassList,viewPager2));
         viewPager2.setClipToPadding(false);
         viewPager2.setClipChildren(false);

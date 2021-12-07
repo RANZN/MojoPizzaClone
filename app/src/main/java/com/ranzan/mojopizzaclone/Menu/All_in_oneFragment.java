@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -26,7 +27,7 @@ import java.util.ArrayList;
 
 
 public class All_in_oneFragment extends Fragment implements ItemClickListener {
-    private ImageView btnBack;
+    private ImageButton btnBack;
     private ImageView TvFavorite;
     private TextView mTvPredict;
     private TextView mTvHalfAndHalf;
@@ -66,6 +67,12 @@ public class All_in_oneFragment extends Fragment implements ItemClickListener {
         scrollTo();
         autoScrollTo();
         searchData();
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
     }
 
     private void searchData() {
@@ -227,7 +234,7 @@ public class All_in_oneFragment extends Fragment implements ItemClickListener {
         recyclerView = view.findViewById(R.id.all_menu_recyclerView);
         searchView=view.findViewById(R.id.searchBar);
 
-        btnBack = view.findViewById(R.id.btnback);
+        btnBack = view.findViewById(R.id.btnBack);
         TvFavorite = view.findViewById(R.id.btnfavorite);
         mTvPredict = view.findViewById(R.id.predict);
         mTvHalfAndHalf = view.findViewById(R.id.HalfAndHalf);

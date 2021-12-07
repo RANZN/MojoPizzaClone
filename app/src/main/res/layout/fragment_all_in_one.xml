@@ -5,15 +5,14 @@
 
     android:id="@+id/all_in_one_fragment"
     android:layout_height="match_parent"
-    tools:context=".Menu.All_in_oneFragment"
-    >
-    <ImageView
-        android:id="@+id/btnback"
+    tools:context=".Menu.All_in_oneFragment">
+
+    <ImageButton
+        android:id="@+id/btnBack"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="10dp"
-        android:background="@drawable/back"
+        android:background="#00CCCCCC"
+        android:padding="9dp"
         android:src="@drawable/back" />
 
     <TextView
@@ -21,7 +20,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginTop="15dp"
-        android:layout_toRightOf="@+id/btnback"
+        android:layout_toRightOf="@+id/btnBack"
         android:text="Menu"
         android:textSize="18dp"
         android:textStyle="bold" />
@@ -31,15 +30,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
-        android:layout_marginTop="15dp"
-        android:layout_marginRight="15dp"
+        android:padding="12dp"
         android:src="@drawable/favorite" />
 
     <androidx.appcompat.widget.SearchView
         android:id="@+id/searchBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginRight="15dp"
         android:layout_toLeftOf="@id/btnfavorite" />
 
 
